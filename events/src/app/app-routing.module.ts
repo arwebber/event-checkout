@@ -13,7 +13,10 @@ const routes: Routes = [
     path: "event-list",
     component: EventListComponent
   },
-  { path: "event-details", component: EventDetailsComponent }
+  {
+    path: "event-details/:eventId",
+    component: EventDetailsComponent
+  }
 ];
 
 @NgModule({
