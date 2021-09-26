@@ -9,12 +9,26 @@ export class EventService {
   constructor(private http: HttpClient) {}
 
   /**
+   * Return the details of a single event.
+   * @return event
+   */
+  getEvent(eventId) {
+    return new Promise<EventModel>((resolve, reject) => {
+      this.http
+        .get(`/api/events/v1/view/${eventId}`)
+        .subscribe((event: EventModel) => {
+          resolve(event);
+        });
+    });
+  }
+
+  /**
    * Return a list of
    * @return eventList
    */
-  getEvents() {
+  getAllEvents() {
     return new Promise<EventModel[]>((resolve, reject) => {
-      this.http.get("/events/v1/all").subscribe((hits: EventModel[]) => {
+      this.http.get("/api/events/v1/all").subscribe((hits: EventModel[]) => {
         resolve(hits);
       });
     });
