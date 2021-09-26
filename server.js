@@ -10,6 +10,8 @@ const app = express();
 
 app.all("/api/*", function (req, res) {
     console.log('redirecting to Server1');
+    req.header("Access-Control-Allow-Origin", "*");
+    req.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     apiProxy.web(req, res, { target: prodServer });
 });
 
