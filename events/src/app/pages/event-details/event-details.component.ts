@@ -30,7 +30,6 @@ export class EventDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.eventDetailsService.getEventSessions(this.eventId).then((sessions: EventSessionModel[]) => {
-      console.log('sessions', sessions);
       this.eventSessions = sessions;
     });
   }
