@@ -13,7 +13,7 @@ export class EventListComponent implements OnInit {
   eventList: EventModel[];
 
   ngOnInit() {
-    this.eventService.getEvents().then((events: EventModel[]) => {
+    this.eventService.getAllEvents().then((events: EventModel[]) => {
       this.eventList = events;
     });
   }
