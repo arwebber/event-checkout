@@ -1,6 +1,6 @@
 {
   "/api/*": {
-    "target": "http://localhost:3001",
+    "target": "https://event-checkout-api.herokuapp.com",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true
