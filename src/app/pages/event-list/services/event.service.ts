@@ -6,7 +6,7 @@ import { EventModel } from "src/app/models/event.model";
   providedIn: "root"
 })
 export class EventService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   /**
    * Return the details of a single event.
@@ -15,7 +15,7 @@ export class EventService {
   getEvent(eventId) {
     return new Promise<EventModel>((resolve, reject) => {
       this.http
-        .get(`/api/events/v1/view/${eventId}`)
+        .get(`https://event-checkout-api.herokuapp.com/api/events/v1/view/${eventId}`)
         .subscribe((event: EventModel) => {
           resolve(event);
         });
@@ -28,7 +28,7 @@ export class EventService {
    */
   getAllEvents() {
     return new Promise<EventModel[]>((resolve, reject) => {
-      this.http.get("/api/events/v1/all").subscribe((hits: EventModel[]) => {
+      this.http.get("https://event-checkout-api.herokuapp.com/api/events/v1/all").subscribe((hits: EventModel[]) => {
         resolve(hits);
       });
     });
