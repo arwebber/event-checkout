@@ -1,9 +1,11 @@
-<mat-card (click)="viewEventDetails(eventDetails.event_id)">
-  <img mat-card-image />
+<mat-card class="event-card" (click)="viewEventDetails(eventDetails.event_id)">
+  <img mat-card-image
+    src="https://akns-images.eonline.com/eol_images/Entire_Site/2020218/rs_1024x759-200318140303-1024-the-office-8.ct.031820.jpg" />
 
   <mat-card-title>{{ eventDetails.title }}</mat-card-title>
 
   <mat-card-subtitle>{{ eventDetails.status }}</mat-card-subtitle>
 
-  <mat-card-content>{{ eventDetails.description }}</mat-card-content>
+  <mat-card-content>{{ eventDetails.description }} plus a lot of other words to maketh asldkjf al;kjdlkajs fl;kjsad;fkl
+    jasdklfj alksdjf;la kjsdflk jas;lkdfalksdj f;lkajf;lkasdjf klajsdf;klajf;klj</mat-card-content>
 </mat-card>

@@ -13,10 +13,10 @@ export class EventDetailsService {
    * @return event
    */
   getEventSessions(eventId) {
-    return new Promise<EventSessionModel>((resolve, reject) => {
+    return new Promise<EventSessionModel[]>((resolve, reject) => {
       this.http
         .get(`/api/event-sessions/v1/${eventId}`)
-        .subscribe((event: EventSessionModel) => {
+        .subscribe((event: EventSessionModel[]) => {
           resolve(event);
         });
     });

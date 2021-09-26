@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { EventSessionModel } from 'src/app/models/event-sessions.model';
 import { EventDetailsService } from "./service/event-details.service";
 
 @Component({
@@ -23,13 +24,23 @@ export class EventDetailsComponent implements OnInit {
    */
   eventId: string;
 
+  eventSessions: EventSessionModel[]
+
+  selectedQuantity = 0;
+
   ngOnInit() {
-    this.eventDetailsService.getEventSessions(this.eventId).then((sessions) => {
+    this.eventDetailsService.getEventSessions(this.eventId).then((sessions: EventSessionModel[]) => {
       console.log('sessions', sessions);
+      this.eventSessions = sessions;
     });
   }
 
   goBack() {
     this.location.back();
+  }
+
+  //function to return list of numbers from 0 to n-1
+  numSequence(n: number): Array<number> {
+    return Array(n);
   }
 }

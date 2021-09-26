@@ -2,18 +2,23 @@
   <mat-icon (click)="goBack()">keyboard_arrow_left</mat-icon>
 </mat-toolbar>
 
-<!-- <div fxLayout="row">
+<div fxLayout="row">
+  <mat-card fxFlex="75" class="event-details">
 
-  <div fxLayout="column">
-    <mat-card class="event-details-card">
+    <mat-list>
+      <div *ngFor="let session of eventSessions">
+        <mat-list-item>{{ session.title }}</mat-list-item>
+        <mat-list-item>{{ session.description }}</mat-list-item>
+        <mat-list-item>{{ session.price }}
 
-    </mat-card>
-  </div>
+          <mat-select [(value)]="selectedQuantity">
+            <mat-option *ngFor="let n of numSequence(11);let i = index;" [value]="i"> {{ i }} </mat-option>
+          </mat-select>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </div>
+    </mat-list>
 
-  <div fxLayout="column">
-    <mat-card class="event-details-card">
-
-    </mat-card>
-  </div>
-
-</div> -->
+  </mat-card>
+  <mat-card fxFlex="25" class="checkout">1. Children</mat-card>
+</div>

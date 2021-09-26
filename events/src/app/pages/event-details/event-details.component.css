@@ -1,4 +1,17 @@
 
-mat-card {
+/* mat-card {
   margin: 7%;
+} */
+
+.event-details.mat-card {
+  margin-left: 6%;
+  margin-top: 6%;
+  margin-right: 3%;
+  /* background-color: white; */
+}
+
+.checkout.mat-card {
+  margin-right: 6%;
+  margin-top: 6%;
+  margin-left: 3%;
 }

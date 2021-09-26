@@ -1,6 +1,7 @@
-<p>event-list works!</p>
+<div class="content">
+  <div fxLayout="row wrap" fxLayoutGap="25px">
+    <app-event *ngFor="let event of eventList" [eventDetails]="event">
+    </app-event>
+  </div>
 
-<div>
-  <app-event *ngFor="let event of eventList" [eventDetails]="event">
-  </app-event>
 </div>

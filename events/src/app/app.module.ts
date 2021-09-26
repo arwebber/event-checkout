@@ -1,7 +1,11 @@
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
+import { FlexLayoutModule } from "@angular/flex-layout";
 import { MatCardModule } from "@angular/material/card";
+import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -25,7 +29,11 @@ import { EventListComponent } from "./pages/event-list/event-list.component";
     MatCardModule,
     MatToolbarModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    FlexLayoutModule,
+    MatDividerModule,
+    MatListModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
