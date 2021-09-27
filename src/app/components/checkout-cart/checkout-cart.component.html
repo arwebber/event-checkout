@@ -1,0 +1,51 @@
+<h2>
+    Order Summary
+</h2>
+<mat-divider></mat-divider>
+<h2>
+    Subtotal
+</h2>
+<mat-divider></mat-divider>
+<h2>
+    Total
+</h2>
+
+<p (click)="promoCode=true;">Have a promo code?</p>
+
+<div *ngIf="promoCode">
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Enter your promo code">
+    </mat-form-field>
+</div>
+
+
+<!-- <mat-list>
+    <div *ngFor="let session of eventSessions">
+        <mat-list-item>
+            <h2>
+                {{ session.title }}
+            </h2>
+        </mat-list-item>
+
+        <mat-list-item>
+            <p>
+                {{ session.description }}
+            </p>
+        </mat-list-item>
+        <mat-list-item *ngIf="session.sale != ''">
+            <p>
+                Sale ends in {{ daysFromTodayCalculator(session.sale_end_date_time) }}
+            </p>
+        </mat-list-item>
+        <mat-list-item>
+            <h4>
+                ${{ session.price }}
+            </h4>
+
+            <mat-select [(value)]="selectedQuantity">
+                <mat-option *ngFor="let n of numSequence(11);let i = index;" [value]="i"> {{ i }} </mat-option>
+            </mat-select>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+    </div>
+</mat-list> -->

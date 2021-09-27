@@ -1,0 +1,15 @@
+h2 {
+    color: black;
+}
+
+.mat-divider {
+    border-top-color: lightgray;
+}
+
+p {
+    color: blue;
+}
+
+.mat-form-field {
+    color: black;
+}
