@@ -1,15 +1,10 @@
-
-mat-card {
-  /* background-color: white; */
-}
-
-.event-details.mat-card {
+.event-details {
   margin-top: 3%;
   margin-right: 1%;
   margin-left: 6%;
 }
 
-.checkout.mat-card {
+.checkout {
   margin-top: 3%;
   margin-right: 6%;
   margin-left: 1%;

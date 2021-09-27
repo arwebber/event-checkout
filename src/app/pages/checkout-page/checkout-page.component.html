@@ -1,0 +1,24 @@
+<mat-toolbar>
+    <span (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon> Back
+    </span>
+</mat-toolbar>
+
+<div fxLayout="row">
+    <div fxFlex="75" class="event-details">
+        <mat-horizontal-stepper>
+            <mat-step label="Tickets">
+                Content 1
+            </mat-step>
+            <mat-step label="Sessions">
+                Content 2
+            </mat-step>
+            <mat-step label="Payment">
+                Content 3
+            </mat-step>
+        </mat-horizontal-stepper>
+    </div>
+    <div fxFlex="25" class="checkout">
+        <app-checkout-cart></app-checkout-cart>
+    </div>
+</div>

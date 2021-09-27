@@ -1,0 +1,19 @@
+mat-horizontal-stepper {
+    background-color: transparent;
+}
+
+.event-details {
+    margin-top: 3%;
+    margin-right: 1%;
+    margin-left: 6%;
+}
+
+.checkout {
+    margin-top: 3%;
+    margin-right: 6%;
+    margin-left: 1%;
+}
+
+mat-toolbar {
+    background-color: transparent;
+  }

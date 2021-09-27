@@ -1,24 +1,24 @@
-<h2>
-    Order Summary
-</h2>
-<mat-divider></mat-divider>
-<h2>
-    Subtotal
-</h2>
-<mat-divider></mat-divider>
-<h2>
-    Total
-</h2>
+<mat-card>
+    <h2>
+        Order Summary
+    </h2>
+    <mat-divider></mat-divider>
+    <h2>
+        Subtotal
+    </h2>
+    <mat-divider></mat-divider>
+    <h2>
+        Total
+    </h2>
 
-<p (click)="promoCode=true;">Have a promo code?</p>
+    <p (click)="promoCode=true;">Have a promo code?</p>
 
-<div *ngIf="promoCode">
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="Enter your promo code">
-    </mat-form-field>
-</div>
-
-
+    <div *ngIf="promoCode">
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Enter your promo code">
+        </mat-form-field>
+    </div>
+</mat-card>
 <!-- <mat-list>
     <div *ngFor="let session of eventSessions">
         <mat-list-item>
