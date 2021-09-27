@@ -15,7 +15,7 @@ export class EventService {
   getEvent(eventId) {
     return new Promise<EventModel>((resolve, reject) => {
       this.http
-        .get(`/api/events/v1/view/${eventId}`)
+        .get(`https://event-checkout-api.herokuapp.com/api/events/v1/view/${eventId}`)
         .subscribe((event: EventModel) => {
           resolve(event);
         });
@@ -28,7 +28,7 @@ export class EventService {
    */
   getAllEvents() {
     return new Promise<EventModel[]>((resolve, reject) => {
-      this.http.get("/api/events/v1/all").subscribe((hits: EventModel[]) => {
+      this.http.get("https://event-checkout-api.herokuapp.com/api/events/v1/all").subscribe((hits: EventModel[]) => {
         resolve(hits);
       });
     });
