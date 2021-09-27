@@ -1,6 +1,5 @@
 <mat-card class="event-card" (click)="viewEventDetails()">
-  <img mat-card-image
-    src="https://akns-images.eonline.com/eol_images/Entire_Site/2020218/rs_1024x759-200318140303-1024-the-office-8.ct.031820.jpg" />
+  <img mat-card-image [src]="eventDetails.banner_image" />
 
   <mat-card-title>{{ eventDetails.title }}</mat-card-title>
 
