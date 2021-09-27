@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { CheckoutCartComponent } from './pages/checkout-cart/checkout-cart.component';
+import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
 import { EventDetailsComponent } from "./pages/event-details/event-details.component";
 import { EventListComponent } from "./pages/event-list/event-list.component";
 
@@ -19,8 +19,8 @@ const routes: Routes = [
     component: EventDetailsComponent
   },
   {
-    path: "cart/",
-    component: CheckoutCartComponent
+    path: "checkout",
+    component: CheckoutPageComponent
   }
 ];
 

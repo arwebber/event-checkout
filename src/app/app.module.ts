@@ -1,6 +1,7 @@
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from "@angular/material/card";
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -17,8 +18,10 @@ import { AppComponent } from "./app.component";
 import { CheckoutCartComponent } from './components/checkout-cart/checkout-cart.component';
 import { EventComponent } from "./components/event/event.component";
 import { SessionListComponent } from './components/session-list/session-list.component';
+import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
 import { EventDetailsComponent } from "./pages/event-details/event-details.component";
 import { EventListComponent } from "./pages/event-list/event-list.component";
+
 
 @NgModule({
   declarations: [
@@ -27,7 +30,8 @@ import { EventListComponent } from "./pages/event-list/event-list.component";
     EventDetailsComponent,
     EventComponent,
     SessionListComponent,
-    CheckoutCartComponent
+    CheckoutCartComponent,
+    CheckoutPageComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +47,8 @@ import { EventListComponent } from "./pages/event-list/event-list.component";
     MatSelectModule,
     MatInputModule,
     MatFormFieldModule,
-    MatStepperModule
+    MatStepperModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

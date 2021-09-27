@@ -5,15 +5,11 @@
 </mat-toolbar>
 
 <div fxLayout="row">
-
   <div fxFlex="75" class="event-details">
-    <mat-card>
-      <app-session-list [eventSessions]="eventSessions"></app-session-list>
-    </mat-card>
+    <app-session-list [eventSessions]="eventSessions"></app-session-list>
   </div>
   <div fxFlex="25" class="checkout">
-    <mat-card>
-      <app-checkout-cart></app-checkout-cart>
-    </mat-card>
+    <app-checkout-cart></app-checkout-cart>
+    <button mat-button (click)="checkout()">Check out</button>
   </div>
 </div>
