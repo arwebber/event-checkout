@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "nodemon server.js",
-    "build": "ng build",
+    "start": "node server.js",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
@@ -36,8 +36,7 @@
     "tslib": "^2.0.0",
     "typescript": "~4.3.5",
     "uuid": "^8.3.2",
-    "zone.js": "~0.11.4",
-    "nodemon": "^2.0.13"
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.2.7",
