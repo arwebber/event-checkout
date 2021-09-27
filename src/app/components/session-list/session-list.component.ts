@@ -28,8 +28,6 @@ export class SessionListComponent implements OnInit {
   today = new Date();
 
   ngOnInit(): void {
-
-
   }
 
   daysFromTodayCalculator(saleEndDate) {
@@ -46,6 +44,10 @@ export class SessionListComponent implements OnInit {
     }
 
     return saleEndString;
+  }
+
+  printChange(sessionId, eventValue) {
+    console.log('session Id is ', sessionId, ' and quantity is ', eventValue);
   }
 
   /**
