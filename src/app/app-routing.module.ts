@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { CheckoutCartComponent } from './pages/checkout-cart/checkout-cart.component';
 import { EventDetailsComponent } from "./pages/event-details/event-details.component";
 import { EventListComponent } from "./pages/event-list/event-list.component";
 
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: "event-details/:eventName/:eventId",
     component: EventDetailsComponent
+  },
+  {
+    path: "cart/",
+    component: CheckoutCartComponent
   }
 ];
 

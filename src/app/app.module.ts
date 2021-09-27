@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
+import { MatStepperModule } from '@angular/material/stepper';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -18,10 +19,6 @@ import { EventComponent } from "./components/event/event.component";
 import { SessionListComponent } from './components/session-list/session-list.component';
 import { EventDetailsComponent } from "./pages/event-details/event-details.component";
 import { EventListComponent } from "./pages/event-list/event-list.component";
-
-
-
-
 
 @NgModule({
   declarations: [
@@ -45,7 +42,8 @@ import { EventListComponent } from "./pages/event-list/event-list.component";
     MatListModule,
     MatSelectModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatStepperModule
   ],
   providers: [],
   bootstrap: [AppComponent]

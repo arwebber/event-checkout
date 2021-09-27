@@ -44,4 +44,8 @@ export class EventDetailsComponent implements OnInit {
   goBack() {
     this.location.back();
   }
+
+  checkout() {
+    this.router.navigate(['/checkout'])
+  }
 }
