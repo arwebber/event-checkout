@@ -5,3 +5,9 @@
 .mat-divider {
     border-top-color: lightgray;
 }
+
+.mat-select {
+    border: 1px solid #cbcbcb;
+    width: 50px;
+    border-radius: 25%;
+}
