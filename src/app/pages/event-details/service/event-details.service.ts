@@ -16,7 +16,7 @@ export class EventDetailsService {
     return new Promise<EventSessionModel[]>((resolve, reject) => {
       this.http
         .get('/api/event-sessions/v1/', { params: { eventId } })
-        .subscribe((event: EventSessionModel[]) => {
+          .subscribe((event: EventSessionModel[]) => {
           resolve(event);
         });
     });
