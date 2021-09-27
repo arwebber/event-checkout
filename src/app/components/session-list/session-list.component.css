@@ -7,7 +7,12 @@
 }
 
 .mat-select {
+    /* border: 1px solid #cbcbcb;
+    border-radius: 15%; */
+}
+
+.test {
+    width: 35px;
     border: 1px solid #cbcbcb;
-    width: 50px;
-    border-radius: 25%;
+    border-radius: 5px;
 }

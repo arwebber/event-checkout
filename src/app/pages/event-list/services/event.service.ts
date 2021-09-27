@@ -6,6 +6,7 @@ import { EventModel } from "src/app/models/event.model";
   providedIn: "root"
 })
 export class EventService {
+
   constructor(private http: HttpClient) { }
 
   /**
@@ -15,7 +16,7 @@ export class EventService {
   getEvent(eventId) {
     return new Promise<EventModel>((resolve, reject) => {
       this.http
-        .get(`/api/events/v1/view/${eventId}`)
+        .get('/api/events/v1/view/', { params: { eventId } })
         .subscribe((event: EventModel) => {
           resolve(event);
         });
@@ -28,7 +29,7 @@ export class EventService {
    */
   getAllEvents() {
     return new Promise<EventModel[]>((resolve, reject) => {
-      this.http.get("/api/events/v1/all").subscribe((hits: EventModel[]) => {
+      this.http.get('/api/events/v1/all').subscribe((hits: EventModel[]) => {
         resolve(hits);
       });
     });

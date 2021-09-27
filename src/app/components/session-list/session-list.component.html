@@ -18,14 +18,22 @@
                 </p>
             </mat-list-item>
 
-            <mat-list-item fxLayout="row" fxLayoutGap="50px">
-                <h4>
-                    ${{ session.price }}
-                </h4>
+            <mat-list-item>
+                <div fxLayout="row" fxLayoutGap="10px">
+                    <div>
+                        ${{ session.price }}
+                    </div>
 
-                <mat-select [(value)]="selectedQuantity">
-                    <mat-option *ngFor="let n of numSequence(11);let i = index;" [value]="i"> {{ i }} </mat-option>
-                </mat-select>
+                    <div class="test">
+                        <mat-select (selectionChange)="printChange(session.event_session_id, $event.value)"
+                            id="session_quantity_{{session.event_session_id}}">
+                            <mat-option *ngFor="let n of numSequence(11);let i = index;" [value]="i"> {{ i }}
+                            </mat-option>
+                        </mat-select>
+                    </div>
+                </div>
+
+
             </mat-list-item>
             <mat-divider></mat-divider>
         </div>
