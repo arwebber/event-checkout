@@ -12,7 +12,7 @@ app.all("/api/*", function (req, res) {
     console.log('redirecting to Server1');
     req.header("Access-Control-Allow-Origin", "*");
     req.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    apiProxy.web(req, res, { target: prodServer });
+    apiProxy.web(req, res, { target: localServer });
 });
 
 // Serve only the static files form the dist directory

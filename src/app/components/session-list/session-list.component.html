@@ -1,0 +1,30 @@
+<mat-list>
+    <div *ngFor="let session of eventSessions">
+        <mat-list-item>
+            <h2>
+                {{ session.title }}
+            </h2>
+        </mat-list-item>
+
+        <mat-list-item>
+            <p>
+                {{ session.description }}
+            </p>
+        </mat-list-item>
+        <mat-list-item *ngIf="session.sale != ''">
+            <p>
+                Sale ends in {{ daysFromTodayCalculator(session.sale_end_date_time) }}
+            </p>
+        </mat-list-item>
+        <mat-list-item>
+            <h4>
+                ${{ session.price }}
+            </h4>
+
+            <mat-select [(value)]="selectedQuantity">
+                <mat-option *ngFor="let n of numSequence(11);let i = index;" [value]="i"> {{ i }} </mat-option>
+            </mat-select>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+    </div>
+</mat-list>

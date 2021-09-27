@@ -8,13 +8,13 @@ import { EventModel } from "src/app/models/event.model";
   styleUrls: ["./event.component.css"]
 })
 export class EventComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   @Input() eventDetails: EventModel;
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  viewEventDetails(eventId: string) {
-    this.router.navigate([`/event-details/${eventId}`]);
+  viewEventDetails() {
+    this.router.navigate([`/event-details/${this.eventDetails.title}/${this.eventDetails.event_id}`]);
   }
 }

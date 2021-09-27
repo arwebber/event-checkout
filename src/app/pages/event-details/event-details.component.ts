@@ -16,6 +16,7 @@ export class EventDetailsComponent implements OnInit {
     private location: Location,
     private router: Router
   ) {
+    this.eventName = this.activatedRoute.snapshot.params.eventName;
     this.eventId = this.activatedRoute.snapshot.params.eventId;
   }
 
@@ -24,9 +25,15 @@ export class EventDetailsComponent implements OnInit {
    */
   eventId: string;
 
-  eventSessions: EventSessionModel[]
+  /**
+   * The selected event name.
+   */
+  eventName: string;
 
-  selectedQuantity = 0;
+  /**
+   * List of the sessions for the selected event.
+   */
+  eventSessions: EventSessionModel[]
 
   ngOnInit() {
     this.eventDetailsService.getEventSessions(this.eventId).then((sessions: EventSessionModel[]) => {
@@ -36,10 +43,5 @@ export class EventDetailsComponent implements OnInit {
 
   goBack() {
     this.location.back();
-  }
-
-  //function to return list of numbers from 0 to n-1
-  numSequence(n: number): Array<number> {
-    return Array(n);
   }
 }
