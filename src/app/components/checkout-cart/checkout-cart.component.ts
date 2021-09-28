@@ -52,7 +52,6 @@ export class CheckoutCartComponent implements OnInit, OnChanges {
    * Function to delete item from cart.
    */
   deleteItem(cartItemId) {
-    console.log('clicked!!!', cartItemId)
     this.checkoutService.deleteCartItemById(cartItemId).then(() => {
       const obj = this.cartContentList.filter((item) => {
         return item.cart_item_id == cartItemId;

@@ -57,19 +57,13 @@ export class SessionListComponent implements OnInit {
     return saleEndString;
   }
 
-  printChange(sessionId, quantity) {
-    console.log('session Id is ', sessionId, ' and quantity is ', quantity);
-  }
-
   addToCart(eventSessionId, quantity) {
     const sessionId = this.cookieService.get('session_id');
 
     if (sessionId != null) {
       this.sessionListService.getCartId(sessionId).then((id) => {
-        console.log('the id is', id);
         if (id == 0) {
           this.sessionListService.createCart(sessionId).then((cartId: number) => {
-            console.log('new id is', cartId);
             this.sessionListService.addItemToCart(new CartItemModel(cartId, eventSessionId, quantity)).then(() => {
               this.change.emit(sessionId);
             })

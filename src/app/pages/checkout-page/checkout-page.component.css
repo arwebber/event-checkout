@@ -1,5 +1,6 @@
 mat-horizontal-stepper {
     background-color: transparent;
+    color: green !important;
 }
 
 .event-details {
@@ -25,3 +26,10 @@ mat-toolbar {
 .ticket-essions {
     margin-top: 25px;
 }
+
+.checkout-btn.mat-raised-button {
+    margin-top: 25px;
+    width: 100%;
+    background-color: green;
+    color: white;
+  }

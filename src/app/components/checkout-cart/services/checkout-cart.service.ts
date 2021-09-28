@@ -15,7 +15,6 @@ export class CheckoutCartService {
    * @return cart
    */
   getCartBySession(sessionId: string) {
-    console.log('time to get cart by session', sessionId);
     return new Promise<CartContentsModel[]>((resolve, reject) => {
       this.http
         .get('/api/cart/v1/contents/by/session/', { params: { sessionId } })
