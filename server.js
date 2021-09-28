@@ -1,19 +1,15 @@
 const express = require('express');
 const path = require('path');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
-const httpProxy = require('http-proxy');
-const apiProxy = httpProxy.createProxyServer();
 const localServer = 'http://localhost:3001';
 const prodServer = 'https://event-checkout-api.herokuapp.com';
 
 const app = express();
 
-app.all("/api/*", function (req, res) {
-    console.log('redirecting to Server1');
-    req.header("Access-Control-Allow-Origin", "*");
-    req.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    apiProxy.web(req, res, { target: prodServer });
-});
+const apiProxy = createProxyMiddleware('/api', { target: prodServer, changeOrigin: true });
+
+app.use(apiProxy);
 
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist/event-checkout'));
