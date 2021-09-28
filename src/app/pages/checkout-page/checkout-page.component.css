@@ -16,4 +16,12 @@ mat-horizontal-stepper {
 
 mat-toolbar {
     background-color: transparent;
-  }
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.ticket-essions {
+    margin-top: 25px;
+}

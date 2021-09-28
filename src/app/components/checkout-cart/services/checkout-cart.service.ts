@@ -5,7 +5,7 @@ import { CartContentsModel } from 'src/app/models/cart-contents.model';
 @Injectable({
   providedIn: 'root'
 })
-export class CheckoutService {
+export class CheckoutCartService {
 
   constructor(private http: HttpClient) { }
 

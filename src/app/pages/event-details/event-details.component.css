@@ -14,3 +14,7 @@ mat-toolbar {
   background-color: transparent;
   color: black
 }
+
+.checkout-btn.mat-raised-button {
+  width: 100%;
+}

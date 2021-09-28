@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { CartItemModel } from 'src/app/models/cart-item.model';
 import { EventSessionModel } from 'src/app/models/event-sessions.model';
-import { CheckoutService } from '../checkout-cart/services/checkout.service';
+import { CheckoutCartService } from '../checkout-cart/services/checkout-cart.service';
 import { SessionListService } from './services/session-list.service';
 
 @Component({
@@ -13,12 +13,15 @@ import { SessionListService } from './services/session-list.service';
 export class SessionListComponent implements OnInit {
 
   constructor(
-    private checkoutService: CheckoutService,
+    private checkoutService: CheckoutCartService,
     private cookieService: CookieService,
     private sessionListService: SessionListService
   ) { }
 
   @Input() eventSessions: EventSessionModel[];
+
+  @Output()
+  change = new EventEmitter();
 
   /**
    * The ticket quantity selected.
@@ -67,11 +70,15 @@ export class SessionListComponent implements OnInit {
         if (id == 0) {
           this.sessionListService.createCart(sessionId).then((cartId: number) => {
             console.log('new id is', cartId);
-            this.sessionListService.addItemToCart(new CartItemModel(cartId, eventSessionId, quantity))
+            this.sessionListService.addItemToCart(new CartItemModel(cartId, eventSessionId, quantity)).then(() => {
+              this.change.emit(sessionId);
+            })
           })
         } else {
           const cartId = id;
-          this.sessionListService.addItemToCart(new CartItemModel(cartId, eventSessionId, quantity))
+          this.sessionListService.addItemToCart(new CartItemModel(cartId, eventSessionId, quantity)).then(() => {
+            this.change.emit(sessionId);
+          })
         }
       });
     }

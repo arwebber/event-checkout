@@ -7,18 +7,216 @@
 <div fxLayout="row">
     <div fxFlex="75" class="event-details">
         <mat-horizontal-stepper>
+
             <mat-step label="Tickets">
-                Content 1
+                <div>
+                    <mat-card>
+                        <mat-card-title>
+                            Tickets
+                        </mat-card-title>
+                        in a hury?
+                    </mat-card>
+                    <!-- <mat-card *ngFor="let cartItem of cartContentList; let i = index">
+                        <span (click)="showContent(cartItem)">
+                            <mat-icon role="img" *ngIf="!cartItem.visible">
+                                keyboard_arrow_up</mat-icon>
+                        </span>
+                        <span (click)="hideContent(cartItem)">
+                            <mat-icon role="img" *ngIf="cartItem.visible">
+                                keyboard_arrow_down</mat-icon>
+                        </span>
+
+
+
+                        <mat-card-title>
+                            Attendee {{ i + 1 }} - {{ cartItem.title }}
+                        </mat-card-title>
+
+                        <mat-card-content *ngIf="!cartItem.visible">
+                            <input matInput placeholder="First Name">
+                            <input matInput placeholder="Last Name">
+                            <input matInput placeholder="Email">
+                            <input matInput placeholder="Title">
+                            <input matInput placeholder="Company">
+                            <input matInput placeholder="Country">
+
+                            <span *ngIf="i==0">
+                                <mat-radio-group>
+                                    <mat-radio-button value="1">Option 1</mat-radio-button>
+                                    <mat-radio-button value="2">Option 2</mat-radio-button>
+                                </mat-radio-group>
+                            </span>
+                        </mat-card-content>
+
+                    </mat-card> -->
+
+
+                    <form *ngIf="ticketForm" [formGroup]="ticketForm">
+                        <mat-card class="ticket-essions" formArrayName="tickets"
+                            *ngFor="let ticket of ticketForm.get('tickets')['controls']; let i = index;s">
+                            <span (click)="showContent(ticket)">
+                                <mat-icon role="img" *ngIf="!ticket.value.visible">
+                                    keyboard_arrow_up</mat-icon>
+                            </span>
+                            <span (click)="hideContent(ticket)">
+                                <mat-icon role="img" *ngIf="ticket.value.visible">
+                                    keyboard_arrow_down</mat-icon>
+                            </span>
+
+                            <mat-card-title>
+                                Attendee {{ i + 1 }} - {{ ticket.value.cartItem.title }}
+                            </mat-card-title>
+
+                            <mat-card-content *ngIf="!ticket.value.visible">
+                                <div [formGroupName]="i">
+
+                                    <div fxLayout="row" fxLayoutGap="10px">
+
+                                        <mat-form-field class="example-full-width" appearance="outline">
+                                            <mat-label>First Name</mat-label>
+                                            <input type="text" matInput formControlName="firstName"
+                                                [errorStateMatcher]="matcher">
+                                            <!-- <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                                                        Please enter a valid email address
+                                                    </mat-error>
+                                                    <mat-error *ngIf="emailFormControl.hasError('required')">
+                                                        Email is <strong>required</strong>
+                                                    </mat-error> -->
+                                        </mat-form-field>
+
+
+
+                                        <mat-form-field class="example-full-width" appearance="outline">
+                                            <mat-label>Last Name</mat-label>
+                                            <input type="text" matInput formControlName="lastName"
+                                                [errorStateMatcher]="matcher">
+                                        </mat-form-field>
+
+                                    </div>
+
+                                    <div fxLayout="row">
+                                        <mat-form-field class="example-full-width" appearance="outline">
+                                            <mat-label>Email</mat-label>
+                                            <input type="email" matInput formControlName="email"
+                                                [errorStateMatcher]="matcher">
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div fxLayout="row">
+                                        <mat-form-field class="example-full-width" appearance="outline">
+                                            <mat-label>Phone</mat-label>
+                                            <input type="text" matInput formControlName="phone"
+                                                [errorStateMatcher]="matcher">
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div fxLayout="row">
+                                        <mat-form-field class="example-full-width" appearance="outline">
+                                            <mat-label>Company</mat-label>
+                                            <input type="text" matInput formControlName="company"
+                                                [errorStateMatcher]="matcher">
+                                        </mat-form-field>
+                                    </div>
+                                    <!-- <input matInput formControlName="firstName" placeholder="First name"> -->
+                                    <!-- <input matInput formControlName="lastName" placeholder="Last name">
+                                    <input matInput formControlName="email" placeholder="Email">
+                                    <input matInput formControlName="phone" placeholder="Phone">
+                                    <input matInput formControlName="company" placeholder="Company"> -->
+                                </div>
+                                <span *ngIf="i==0">
+                                    <mat-radio-group>
+                                        <mat-radio-button value="1">Option 1</mat-radio-button>
+                                        <mat-radio-button value="2">Option 2</mat-radio-button>
+                                    </mat-radio-group>
+                                </span>
+                            </mat-card-content>
+                        </mat-card>
+                    </form>
+
+                </div>
             </mat-step>
+
             <mat-step label="Sessions">
-                Content 2
+                <div>
+                    <form *ngIf="ticketForm" [formGroup]="ticketForm">
+                        <mat-card class="ticket-essions" formArrayName="tickets"
+                            *ngFor="let ticket of ticketForm.get('tickets')['controls']; let i = index;s">
+                            <span (click)="showContent(ticket)">
+                                <mat-icon role="img" *ngIf="!ticket.value.visible">
+                                    keyboard_arrow_up</mat-icon>
+                            </span>
+                            <span (click)="hideContent(ticket)">
+                                <mat-icon role="img" *ngIf="ticket.value.visible">
+                                    keyboard_arrow_down</mat-icon>
+                            </span>
+
+                            <mat-card-title>
+                                Attendee {{ i + 1 }} - {{ ticket.value.cartItem.title }}
+                            </mat-card-title>
+
+                            <mat-card-content *ngIf="!ticket.value.visible">
+                                <div [formGroupName]="i">
+
+                                    <div fxLayout="row" fxLayoutGap="10px">
+
+                                        <mat-form-field class="example-full-width" appearance="outline">
+                                            <mat-label>First Name</mat-label>
+                                            <input disabled matInput [value]="ticket.value.firstName">
+                                        </mat-form-field>
+
+
+
+                                        <mat-form-field class="example-full-width" appearance="outline">
+                                            <mat-label>Last Name</mat-label>
+                                            <input disabled matInput [value]="ticket.value.lastName">
+                                        </mat-form-field>
+
+                                    </div>
+
+                                    <div fxLayout="row">
+                                        <mat-form-field class="example-full-width" appearance="outline">
+                                            <mat-label>Email</mat-label>
+                                            <input disabled matInput [value]="ticket.value.email">
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div fxLayout="row">
+                                        <mat-form-field class="example-full-width" appearance="outline">
+                                            <mat-label>Phone</mat-label>
+                                            <input disabled matInput [value]="ticket.value.phone">
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div fxLayout="row">
+                                        <mat-form-field class="example-full-width" appearance="outline">
+                                            <mat-label>Company</mat-label>
+                                            <input disabled matInput [value]="ticket.value.company">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <!-- <span *ngIf="i==0">
+                                    <mat-radio-group>
+                                        <mat-radio-button value="1">Option 1</mat-radio-button>
+                                        <mat-radio-button value="2">Option 2</mat-radio-button>
+                                    </mat-radio-group>
+                                </span> -->
+                            </mat-card-content>
+                        </mat-card>
+                    </form>
+                </div>
+
+
             </mat-step>
             <mat-step label="Payment">
-                Content 3
+                <div>
+                    <mat-card>
+                        <input mat>
+                    </mat-card>
+                </div>
             </mat-step>
         </mat-horizontal-stepper>
     </div>
     <div fxFlex="25" class="checkout">
-        <app-checkout-cart></app-checkout-cart>
+        <app-checkout-cart [cartContentList]="cartContentList"></app-checkout-cart>
     </div>
 </div>

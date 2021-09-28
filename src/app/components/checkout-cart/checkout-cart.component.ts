@@ -1,7 +1,7 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { CartContentsModel } from 'src/app/models/cart-contents.model';
-import { CheckoutService } from './services/checkout.service';
+import { CheckoutCartService } from './services/checkout-cart.service';
 
 @Component({
   selector: 'app-checkout-cart',
@@ -11,14 +11,21 @@ import { CheckoutService } from './services/checkout.service';
 export class CheckoutCartComponent implements OnInit, OnChanges {
 
   constructor(
-    private checkoutService: CheckoutService,
+    private checkoutService: CheckoutCartService,
     private cookieService: CookieService
-  ) { }
+  ) {
+    this.sessionId = this.cookieService.get('session_id')
+  }
 
   /**
    * List of cart contents.
    */
-  cartContentList: CartContentsModel[]
+  @Input() cartContentList: CartContentsModel[]
+
+  /**
+   * The session ID loaded from cookie.
+   */
+  sessionId: string;
 
   /**
    * Boolean to determine if the promo textbox should be shown.
@@ -36,13 +43,8 @@ export class CheckoutCartComponent implements OnInit, OnChanges {
   subtotal: number;
 
   ngOnInit(): void {
-    const sessionId = this.cookieService.get('session_id')
-    if (sessionId != null) {
-      this.checkoutService.getCartBySession(sessionId).then((cart) => {
-        this.cartContentList = cart;
-      });
-
-      this.cartSubTotal(sessionId);
+    if (this.sessionId != null) {
+      this.cartSubTotal();
     }
   }
 
@@ -56,18 +58,19 @@ export class CheckoutCartComponent implements OnInit, OnChanges {
         return item.cart_item_id == cartItemId;
       })
       this.cartContentList.splice(this.cartContentList.indexOf(obj[0]), 1);
+      this.cartSubTotal();
     });
   }
 
-  cartSubTotal(sessionId) {
-    this.checkoutService.getCartSubtotal(sessionId).then((subtotal) => {
-      console.log('sub', subtotal.subtotal);
+  cartSubTotal() {
+    this.checkoutService.getCartSubtotal(this.sessionId).then((subtotal) => {
       this.subtotal = subtotal.subtotal;
     })
   }
 
   ngOnChanges(): void {
-    console.log('change occured in checkout')
+    // setTimeout(() => {
+    this.cartSubTotal();
+    // }, 200);
   }
-
 }

@@ -6,6 +6,7 @@ export class CartContentsModel {
   price: number;
   title: string;
   quantity: string;
+  visible: boolean;
 
   constructor(
     cart_item_id: string,

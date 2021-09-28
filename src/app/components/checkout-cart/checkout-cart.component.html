@@ -9,7 +9,7 @@
                 <div *ngIf="editMode==true">
                     <mat-icon (click)="deleteItem(cartItem.cart_item_id)" color="red">delete</mat-icon>
                 </div>
-                {{ cartItem.quantity }}x {{ cartItem.title }} {{ cartItem.price }}
+                {{ cartItem.quantity }}x {{ cartItem.title }} ${{ cartItem.price }}
             </mat-list-item>
         </div>
         <div>
@@ -21,27 +21,33 @@
     <h2>
         Subtotal
     </h2>
-    <p>
-        Subtotal: {{ subtotal }}
-    </p>
-    <p>
-        Tax: {{ subtotal * .055 }}
-    </p>
+    <mat-list>
+        <mat-list-item>
+            Subtotal: ${{ subtotal }}
+        </mat-list-item>
+        <mat-list-item>
+            Tax: ${{ subtotal * .055 }}
+        </mat-list-item>
+    </mat-list>
+
     <mat-divider></mat-divider>
     <h2>
         Total
     </h2>
-    <p>
-        Total: {{ subtotal * 1.055 }}
-    </p>
+    <mat-list>
+        <mat-list-item>
+            Total: ${{ subtotal * 1.055 }}
+        </mat-list-item>
+        <mat-list-item>
+            <p (click)="promoCode=true;"> Have a promo code?</p>
+        </mat-list-item>
 
-    <p (click)="promoCode=true;">Have a promo code?</p>
-
-    <div *ngIf="promoCode">
-        <mat-form-field class="example-full-width">
-            <input matInput placeholder="Enter your promo code">
-        </mat-form-field>
-    </div>
+        <div *ngIf="promoCode">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Enter your promo code">
+            </mat-form-field>
+        </div>
+    </mat-list>
 </mat-card>
 <!-- <mat-list>
     <div *ngFor="let session of eventSessions">
