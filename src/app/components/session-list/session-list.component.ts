@@ -1,5 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
+import { CartItemModel } from 'src/app/models/cart-item.model';
 import { EventSessionModel } from 'src/app/models/event-sessions.model';
+import { CheckoutService } from '../checkout-cart/services/checkout.service';
+import { SessionListService } from './services/session-list.service';
 
 @Component({
   selector: 'app-session-list',
@@ -8,7 +12,11 @@ import { EventSessionModel } from 'src/app/models/event-sessions.model';
 })
 export class SessionListComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private checkoutService: CheckoutService,
+    private cookieService: CookieService,
+    private sessionListService: SessionListService
+  ) { }
 
   @Input() eventSessions: EventSessionModel[];
 
@@ -46,8 +54,27 @@ export class SessionListComponent implements OnInit {
     return saleEndString;
   }
 
-  printChange(sessionId, eventValue) {
-    console.log('session Id is ', sessionId, ' and quantity is ', eventValue);
+  printChange(sessionId, quantity) {
+    console.log('session Id is ', sessionId, ' and quantity is ', quantity);
+  }
+
+  addToCart(eventSessionId, quantity) {
+    const sessionId = this.cookieService.get('session_id');
+
+    if (sessionId != null) {
+      this.sessionListService.getCartId(sessionId).then((id) => {
+        console.log('the id is', id);
+        if (id == 0) {
+          this.sessionListService.createCart(sessionId).then((cartId: number) => {
+            console.log('new id is', cartId);
+            this.sessionListService.addItemToCart(new CartItemModel(cartId, eventSessionId, quantity))
+          })
+        } else {
+          const cartId = id;
+          this.sessionListService.addItemToCart(new CartItemModel(cartId, eventSessionId, quantity))
+        }
+      });
+    }
   }
 
   /**

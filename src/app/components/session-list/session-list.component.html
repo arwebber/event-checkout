@@ -12,7 +12,7 @@
                     {{ session.description }}
                 </p>
             </mat-list-item>
-            <mat-list-item *ngIf="session.sale != ''">
+            <mat-list-item *ngIf="session.sale">
                 <p>
                     Sale ends in {{ daysFromTodayCalculator(session.sale_end_date_time) }}
                 </p>
@@ -25,7 +25,7 @@
                     </div>
 
                     <div class="test">
-                        <mat-select (selectionChange)="printChange(session.event_session_id, $event.value)"
+                        <mat-select (selectionChange)="addToCart(session.event_session_id, $event.value)"
                             id="session_quantity_{{session.event_session_id}}">
                             <mat-option *ngFor="let n of numSequence(11);let i = index;" [value]="i"> {{ i }}
                             </mat-option>
