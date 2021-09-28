@@ -1,5 +1,5 @@
 export class EventModel {
-  event_id: string;
+  event_id: number;
   title: string;
   description: string;
   start_date_time: string;
@@ -8,7 +8,7 @@ export class EventModel {
   banner_image: string;
 
   constructor(
-    event_id: string,
+    event_id: number,
     title: string,
     description: string,
     start_date_time: string,

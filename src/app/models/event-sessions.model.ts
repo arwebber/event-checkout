@@ -1,26 +1,26 @@
 export class EventSessionModel {
-  event_session_id: string;
-  event_id: string;
+  event_session_id: number;
+  event_id: number;
   description: string;
   title: string;
   type: string;
-  price: string;
-  sale: string;
+  price: number;
+  sale: boolean;
   sale_end_date_time: string;
   quantity_remaining: string;
-  total_quantity: string;
+  total_quantity: number;
 
   constructor(
-    event_session_id: string,
-    event_id: string,
+    event_session_id: number,
+    event_id: number,
     description: string,
     title: string,
     type: string,
-    price: string,
-    sale: string,
+    price: number,
+    sale: boolean,
     sale_end_date_time: string,
     quantity_remaining: string,
-    total_quantity: string
+    total_quantity: number
   ) {
     this.event_session_id = event_session_id;
     this.event_id = event_id;
