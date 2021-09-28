@@ -15,7 +15,7 @@ export class EventDetailsService {
   getEventSessions(eventId) {
     return new Promise<EventSessionModel[]>((resolve, reject) => {
       this.http
-        .get('https://event-checkout-api.herokuapp.com/api/event-sessions/v1/', { params: { eventId } })
+        .get('/api/event-sessions/v1/', { params: { eventId } })
         .subscribe((event: EventSessionModel[]) => {
           resolve(event);
         });
