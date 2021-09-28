@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   ) { }
 
   public ngOnInit() {
-    if (this.cookieService.get('session_id') == null) {
+    if (this.cookieService.get('session_id') == null || this.cookieService.get('session_id') == '') {
       this.cookieService.set('session_id', uuidv4())
     }
   }
