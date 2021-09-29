@@ -17,9 +17,14 @@ export class EventService {
     return new Promise<EventModel>((resolve, reject) => {
       this.http
         .get('/api/events/v1/view/', { params: { eventId } })
-        .subscribe((event: EventModel) => {
-          resolve(event);
-        });
+        .subscribe(
+          (event: EventModel) => {
+            resolve(event);
+          },
+          (error) => {
+            console.error(error)
+            reject('error')
+          });
     });
   }
 
@@ -29,9 +34,14 @@ export class EventService {
    */
   getAllEvents() {
     return new Promise<EventModel[]>((resolve, reject) => {
-      this.http.get('/api/events/v1/all').subscribe((hits: EventModel[]) => {
-        resolve(hits);
-      });
+      this.http.get('/api/events/v1/all').subscribe(
+        (hits: EventModel[]) => {
+          resolve(hits);
+        },
+        (error) => {
+          console.error(error)
+          reject('error')
+        });
     });
   }
 }
