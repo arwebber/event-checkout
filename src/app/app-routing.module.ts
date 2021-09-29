@@ -21,6 +21,11 @@ const routes: Routes = [
   {
     path: "checkout",
     component: CheckoutPageComponent
+  },
+  {
+    path: "**",
+    redirectTo: "/event-list",
+    pathMatch: "full"
   }
 ];
 
