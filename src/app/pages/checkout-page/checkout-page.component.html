@@ -25,7 +25,7 @@
                             <div class="one">
                                 In a hurry? Fill out this form later via link in your email.
                             </div>
-                            <div class="two">
+                            <div (click)="goToLastStep()" class="two">
                                 Skip this step
                             </div>
                         </div>
@@ -201,7 +201,8 @@
     </div>
     <div fxFlex="25" class="checkout">
         <app-checkout-cart [cartContentList]="cartContentList"></app-checkout-cart>
-        <button [disabled]="this.ticketForm?.get('tickets')['controls'][0].status=='INVALID'" class="checkout-btn"
-            mat-raised-button (click)="goForwardStep(stepper)"> {{ nextStep }} </button>
+        <button
+            [disabled]="this.cartContentList?.length==0 || this.ticketForm?.get('tickets')['controls'][0]?.status=='INVALID'"
+            class="checkout-btn" mat-raised-button (click)="goForwardStep(stepper)"> {{ nextStep }} </button>
     </div>
 </div>

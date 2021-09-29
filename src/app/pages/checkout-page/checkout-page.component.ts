@@ -117,7 +117,10 @@ export class CheckoutPageComponent implements OnInit, AfterContentChecked {
     } else {
       this.completePurchase();
     }
-    // this.nextStep = stepper
+  }
+
+  goToLastStep() {
+    this.stepper.selectedIndex = 2;
   }
 
   completePurchase() {

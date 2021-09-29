@@ -16,10 +16,12 @@ p {
 
 .trash {
     color:red;
+    text-align: left;
+    /* font-size: 5px; */
 }
 
 .left {
-    text-align: right
+    text-align: right;
 }
 
 .container {
@@ -29,11 +31,14 @@ p {
 }
 
 .one {
-    flex-basis: 50%;
+    flex-basis: 80%;
 }
 
 .two {
-    flex-basis: 50%;
+    flex-basis: 20%;
     text-align: right;
 }
 
+.matitem.mat-list-item {
+    height: auto;
+}

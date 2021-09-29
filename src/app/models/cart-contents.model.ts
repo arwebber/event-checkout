@@ -4,6 +4,7 @@ export class CartContentsModel {
   date_created: string;
   event_session_id: number;
   event_id: number;
+  event_title: number;
   price: number;
   title: string;
   quantity: number;
@@ -15,6 +16,7 @@ export class CartContentsModel {
     date_created: string,
     event_session_id: number,
     event_id: number,
+    event_title: number,
     price: number,
     title: string,
     quantity: number
@@ -24,6 +26,7 @@ export class CartContentsModel {
     this.date_created = date_created;
     this.event_session_id = event_session_id;
     this.event_id = event_id;
+    this.event_title = event_title;
     this.price = price;
     this.title = title;
     this.quantity = quantity;
