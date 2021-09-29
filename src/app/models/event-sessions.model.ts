@@ -9,6 +9,7 @@ export class EventSessionModel {
   sale_end_date_time: string;
   quantity_remaining: string;
   total_quantity: number;
+  tickets_sold: number;
 
   constructor(
     event_session_id: number,

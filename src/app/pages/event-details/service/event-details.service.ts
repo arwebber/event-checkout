@@ -21,4 +21,19 @@ export class EventDetailsService {
         });
     });
   }
+
+  /**
+   * Return the sessions for an event.
+   * @return event
+   */
+  getEventTicketsSold(eventSessionId: number) {
+    console.log('sending the session id', eventSessionId);
+    return new Promise<any>((resolve, reject) => {
+      this.http
+        .get('/api/sold/v1/tickets/event/session/', { params: { eventSessionId } })
+        .subscribe((ticketsSold) => {
+          resolve(ticketsSold[0].totalSold);
+        });
+    });
+  }
 }

@@ -12,6 +12,11 @@
                     {{ session.description }}
                 </p>
             </mat-list-item>
+            <mat-list-item *ngIf="session.type != 'D' && session.total_quantity - session.tickets_sold <= 10">
+                <p>
+                    Hurry! Only {{ session.total_quantity - session.tickets_sold }} remaining!
+                </p>
+            </mat-list-item>
             <mat-list-item *ngIf="session.sale">
                 <p>
                     Sale ends in {{ daysFromTodayCalculator(session.sale_end_date_time) }}
@@ -40,7 +45,7 @@
                 <mat-divider *ngIf="i<(eventSessions.length-1)"></mat-divider>
             </mat-list-item>
 
-            <mat-list-item *ngIf="session.type !='D'">
+            <mat-list-item *ngIf="session.type !='D' && session.total_quantity != session.tickets_sold">
                 <div fxLayout="row" fxLayoutGap="10px">
                     <div>
                         ${{ session.price }}
@@ -49,10 +54,31 @@
                     <div class="selector">
                         <mat-select (selectionChange)="addToCart(session.event_session_id, $event.value)"
                             id="session_quantity_{{session.event_session_id}}">
-                            <mat-option *ngFor="let n of numSequence(11);let i = index;" [value]="i"> {{ i }}
-                            </mat-option>
+                            <div *ngIf="session.total_quantity - session.tickets_sold >= 10">
+                                <mat-option *ngFor="let n of numSequence(ticketLimit);let i = index;" [value]="i">
+                                    {{ i }}
+                                </mat-option>
+                            </div>
+
+                            <div *ngIf="session.total_quantity - session.tickets_sold < 10">
+                                <mat-option
+                                    *ngFor="let n of numSequence(session.total_quantity - session.tickets_sold);let i=index;"
+                                    [value]="i">
+                                    {{ i }}
+                                </mat-option>
+                            </div>
+
+
+
                         </mat-select>
                     </div>
+                </div>
+                <mat-divider *ngIf="i<(eventSessions.length-1)"></mat-divider>
+            </mat-list-item>
+
+            <mat-list-item *ngIf="session.total_quantity == session.tickets_sold">
+                <div>
+                    ${{ session.price }} Sold Out
                 </div>
                 <mat-divider *ngIf="i<(eventSessions.length-1)"></mat-divider>
             </mat-list-item>

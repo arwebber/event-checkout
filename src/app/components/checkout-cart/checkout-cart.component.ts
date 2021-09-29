@@ -80,9 +80,12 @@ export class CheckoutCartComponent implements OnInit, OnChanges {
 
   cartSubTotal() {
     this.checkoutService.getCartSubtotal(this.sessionId).then((subtotal) => {
-      this.subtotal = +(subtotal.subtotal.toFixed(2));
-      this.subtotalTax = +(this.subtotal * this.tax).toFixed(2);
-      this.total = +(this.subtotal + this.subtotalTax).toFixed(2);
+      this.subtotal = +(subtotal).toFixed(2);
+
+      if (this.subtotal > 0) {
+        this.subtotalTax = +(this.subtotal * this.tax).toFixed(2);
+        this.total = +(this.subtotal + this.subtotalTax).toFixed(2);
+      }
     })
   }
 

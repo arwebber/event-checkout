@@ -38,7 +38,13 @@ export class SessionListComponent implements OnInit {
    */
   today = new Date();
 
+  /**
+   * Limit of tickets a user is allowed to purchase per session.
+   */
+  ticketLimit = 10
+
   ngOnInit(): void {
+
   }
 
   daysFromTodayCalculator(saleEndDate) {
@@ -66,13 +72,13 @@ export class SessionListComponent implements OnInit {
           this.sessionListService.createCart(sessionId).then((cartId: number) => {
             this.sessionListService.addItemToCart(new CartItemModel(cartId, eventSessionId, quantity)).then(() => {
               this.change.emit(sessionId);
-            })
-          })
+            });
+          });
         } else {
           const cartId = id;
           this.sessionListService.addItemToCart(new CartItemModel(cartId, eventSessionId, quantity)).then(() => {
             this.change.emit(sessionId);
-          })
+          });
         }
       });
     }
@@ -82,7 +88,7 @@ export class SessionListComponent implements OnInit {
    * Function used to generate the quantity selection
    */
   numSequence(n: number): Array<number> {
-    return Array(n);
+    // Add 1 to account for 0 option.
+    return Array(n + 1);
   }
-
 }

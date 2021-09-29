@@ -54,8 +54,23 @@ export class EventDetailsComponent implements OnInit {
   ngOnInit() {
     this.eventDetailsService.getEventSessions(this.eventId).then((sessions: EventSessionModel[]) => {
       this.eventSessions = sessions;
+
+      this.loadTicketsSold(this.eventSessions);
+
+      console.log('tickets remaining', this.eventSessions);
+
     });
     this.loadCart('t');
+  }
+
+  loadTicketsSold(sessions: EventSessionModel[]) {
+    // Retrieve the tickets sold for each event.
+    sessions.forEach((event: EventSessionModel) => {
+      console.log('the event', event);
+      this.eventDetailsService.getEventTicketsSold(event.event_session_id).then((ticketsSold) => {
+        event.tickets_sold = ticketsSold;
+      })
+    })
   }
 
   loadCart(event) {

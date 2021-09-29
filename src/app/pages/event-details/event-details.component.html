@@ -10,6 +10,7 @@
   </div>
   <div fxFlex="25" class="checkout">
     <app-checkout-cart [cartContentList]="cartContentList"></app-checkout-cart>
-    <button class="checkout-btn" mat-raised-button (click)="checkout()">Check out</button>
+    <button [disabled]="cartContentList?.length==0" class="checkout-btn" mat-raised-button (click)="checkout()">Check
+      out</button>
   </div>
 </div>

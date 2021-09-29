@@ -16,7 +16,7 @@ export class CheckoutModalComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onNoClick(): void {
+  dismss(): void {
     this.dialogRef.close();
     this.router.navigate([`/event-list`]);
   }

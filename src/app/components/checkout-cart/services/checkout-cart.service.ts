@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { CartContentsModel } from 'src/app/models/cart-contents.model';
 import { CheckoutFormInfo } from 'src/app/models/checkout-form-info.model';
+import { SubTotalModel } from 'src/app/models/subtotal.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,11 +28,18 @@ export class CheckoutCartService {
 
 
   getCartSubtotal(sessionId: string) {
-    return new Promise<any>((resolve, reject) => {
+    return new Promise<number>((resolve, reject) => {
       this.http
         .get('/api/cart/v1/contents/total/', { params: { sessionId } })
-        .subscribe((subtotal) => {
-          resolve(subtotal);
+        .subscribe((subtotal: SubTotalModel) => {
+
+          if (subtotal.subtotal == null) {
+            resolve(0);
+          } else {
+            resolve(subtotal.subtotal);
+          }
+
+
         });
     });
   }
