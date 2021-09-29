@@ -1,7 +1,10 @@
 <mat-toolbar>
-    <span (click)="goBack()">
-        <mat-icon>arrow_back</mat-icon> Back
-    </span>
+    <div (click)="goBack()" fxLayout="row">
+        <mat-icon>arrow_back</mat-icon>
+        <mat-card-title>
+            Back
+        </mat-card-title>
+    </div>
 </mat-toolbar>
 
 <div fxLayout="row">
@@ -11,10 +14,21 @@
             <mat-step label="Tickets">
                 <div>
                     <mat-card>
-                        <mat-card-title>
-                            Tickets
-                        </mat-card-title>
-                        in a hury?
+                        <div fxLayout="row">
+                            <mat-icon>av_timer</mat-icon>
+                            <mat-card-title>
+                                Tickets
+                            </mat-card-title>
+                        </div>
+
+                        <div class="container">
+                            <div class="one">
+                                In a hurry? Fill out this form later via link in your email.
+                            </div>
+                            <div class="two">
+                                Skip this step
+                            </div>
+                        </div>
                     </mat-card>
                     <form *ngIf="ticketForm" [formGroup]="ticketForm">
                         <mat-card class="ticket-essions" formArrayName="tickets"
@@ -39,7 +53,7 @@
 
                                         <mat-form-field class="input-field" appearance="outline">
                                             <mat-label>First Name</mat-label>
-                                            <input type="text" matInput formControlName="firstName"
+                                            <input [required]="i==0" type="text" matInput formControlName="firstName"
                                                 [errorStateMatcher]="matcher">
                                             <!-- <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
                                                         Please enter a valid email address
@@ -53,7 +67,7 @@
 
                                         <mat-form-field class="input-field" appearance="outline">
                                             <mat-label>Last Name</mat-label>
-                                            <input type="text" matInput formControlName="lastName"
+                                            <input [required]="i==0" type="text" matInput formControlName="lastName"
                                                 [errorStateMatcher]="matcher">
                                         </mat-form-field>
 
@@ -62,7 +76,7 @@
                                     <div fxLayout="row">
                                         <mat-form-field class="input-field" appearance="outline">
                                             <mat-label>Email</mat-label>
-                                            <input type="email" matInput formControlName="email"
+                                            <input [required]="i==0" type="email" matInput formControlName="email"
                                                 [errorStateMatcher]="matcher">
                                         </mat-form-field>
                                     </div>
@@ -187,6 +201,7 @@
     </div>
     <div fxFlex="25" class="checkout">
         <app-checkout-cart [cartContentList]="cartContentList"></app-checkout-cart>
-        <button class="checkout-btn" mat-raised-button (click)="goForwardStep(stepper)"> {{ nextStep }} </button>
+        <button [disabled]="this.ticketForm?.get('tickets')['controls'][0].status=='INVALID'" class="checkout-btn"
+            mat-raised-button (click)="goForwardStep(stepper)"> {{ nextStep }} </button>
     </div>
 </div>

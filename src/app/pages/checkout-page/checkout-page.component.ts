@@ -71,7 +71,9 @@ export class CheckoutPageComponent implements OnInit, AfterContentChecked {
         this.cartContentList = cart;
         this.cartContentList.forEach((cartItem) => {
           const cartInfoItem = new CheckoutFormInfo(cartItem);
-          this.checkoutFormData.push(this.formBuilder.group(cartInfoItem))
+          for (let i = 0; i < cartInfoItem.cartItem.quantity; i++) {
+            this.checkoutFormData.push(this.formBuilder.group(cartInfoItem));
+          }
         })
         this.buildForm(this.checkoutFormData);
       });
@@ -120,11 +122,19 @@ export class CheckoutPageComponent implements OnInit, AfterContentChecked {
 
   completePurchase() {
     console.log('tix', this.ticketForm.value.tickets);
-    this.checkoutCartService.addTicketsSold(this.ticketForm.value.tickets)
-    // TODO: call db to add sold
-    let dialogRef = this.dialog.open(CheckoutModalComponent, {
-      height: '400px',
-      width: '600px',
+    this.checkoutCartService.addTicketsSold(this.ticketForm.value.tickets).then(() => {
+      this.dialog.open(CheckoutModalComponent, {
+        height: '400px',
+        width: '600px',
+        data: { type: 'success' }
+      });
+    }).catch(() => {
+      console.log('error>>>????')
+      this.dialog.open(CheckoutModalComponent, {
+        height: '400px',
+        width: '600px',
+        data: { type: 'error' }
+      });
     });
   }
 

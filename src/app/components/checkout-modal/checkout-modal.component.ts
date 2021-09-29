@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,7 +11,9 @@ export class CheckoutModalComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private dialogRef: MatDialogRef<CheckoutModalComponent>) { }
+    private dialogRef: MatDialogRef<CheckoutModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { type: string }
+  ) { }
 
   ngOnInit(): void {
   }

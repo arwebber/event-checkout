@@ -1,8 +1,29 @@
 .success {
     color: green;
-    font-size: 300px;
+    font-size: 275px;
+}
+
+.error {
+    color: red;
+    font-size: 275px;
 }
 
 .center {
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.one {
+    flex-basis: 55%;
+    text-align: center;
+}
+
+.two {
+    flex-basis: 100%;
     text-align: center;
 }

@@ -6,7 +6,7 @@ export class CartContentsModel {
   event_id: number;
   price: number;
   title: string;
-  quantity: string;
+  quantity: number;
   visible: boolean;
 
   constructor(
@@ -17,7 +17,7 @@ export class CartContentsModel {
     event_id: number,
     price: number,
     title: string,
-    quantity: string
+    quantity: number
   ) {
     this.cart_item_id = cart_item_id;
     this.cart_id = cart_id;

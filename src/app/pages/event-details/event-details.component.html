@@ -1,7 +1,10 @@
 <mat-toolbar>
-  <span (click)="goBack()">
-    <mat-icon>arrow_back</mat-icon> {{ eventName }}
-  </span>
+  <div (click)="goBack()" fxLayout="row">
+    <mat-icon>arrow_back</mat-icon>
+    <mat-card-title>
+      {{ eventName }}
+    </mat-card-title>
+  </div>
 </mat-toolbar>
 
 <div fxLayout="row">

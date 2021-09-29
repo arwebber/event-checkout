@@ -1,5 +1,5 @@
 <div mat-dialog-actions>
-    <div fxLayout="column">
+    <!-- <div fxLayout="column">
         <div fxFlex="20%">
 
         </div>
@@ -13,10 +13,38 @@
             Success! Your tickets have been emailed to you.
             <button mat-button (click)="dismss()">Close</button>
         </div>
+    </div> -->
+    <mat-icon (click)="dismss()">exit_to_app</mat-icon>
+
+    <div *ngIf="data.type=='success'" class="container">
+        <div class="one">
+            <div>
+                <mat-icon class="success">check_circle_outline</mat-icon>
+            </div>
+        </div>
     </div>
 
-    <!-- <div fxLayout="row">
-        
-    </div> -->
+    <div *ngIf="data.type=='success'" class="container">
+        <div class="two">
+            <mat-card-content>
+                Success! Your tickets have been emailed to you.
+            </mat-card-content>
+        </div>
+    </div>
 
+    <div *ngIf="data.type=='error'" class="container">
+        <div class="one">
+            <div>
+                <mat-icon class="error">error_outline</mat-icon>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="data.type=='error'" class="container">
+        <div class="two">
+            <mat-card-content>
+                Error: Your purchase could not be completed at this time.
+            </mat-card-content>
+        </div>
+    </div>
 </div>
