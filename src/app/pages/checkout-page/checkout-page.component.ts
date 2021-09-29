@@ -1,10 +1,12 @@
 import { Location } from '@angular/common';
 import { AfterContentChecked, Component, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { CheckoutCartService } from 'src/app/components/checkout-cart/services/checkout-cart.service';
+import { CheckoutModalComponent } from 'src/app/components/checkout-modal/checkout-modal.component';
 import { CartContentsModel } from 'src/app/models/cart-contents.model';
 import { CheckoutFormInfo } from 'src/app/models/checkout-form-info.model';
 
@@ -16,6 +18,7 @@ import { CheckoutFormInfo } from 'src/app/models/checkout-form-info.model';
 export class CheckoutPageComponent implements OnInit, AfterContentChecked {
 
   constructor(
+    private dialog: MatDialog,
     private router: Router,
     private location: Location,
     private checkoutCartService: CheckoutCartService,
@@ -107,8 +110,22 @@ export class CheckoutPageComponent implements OnInit, AfterContentChecked {
   }
 
   goForwardStep(stepper: MatStepper) {
-    stepper.next();
+    if (this.nextStep != 'Submit Purchase') {
+      stepper.next();
+    } else {
+      this.completePurchase();
+    }
     // this.nextStep = stepper
+  }
+
+  completePurchase() {
+    console.log('tix', this.ticketForm.value.tickets);
+    this.checkoutCartService.addTicketsSold(this.ticketForm.value.tickets)
+    // TODO: call db to add sold
+    let dialogRef = this.dialog.open(CheckoutModalComponent, {
+      height: '400px',
+      width: '600px',
+    });
   }
 
   goBack() {
