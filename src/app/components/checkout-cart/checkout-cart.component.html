@@ -6,48 +6,86 @@
     <mat-list>
         <div *ngFor="let cartItem of cartContentList">
             <mat-list-item>
-                <div *ngIf="editMode==true">
-                    <mat-icon (click)="deleteItem(cartItem.cart_item_id)">delete</mat-icon>
+                <mat-icon *ngIf="editMode==true" (click)="deleteItem(cartItem.cart_item_id)" class="trash">
+                    delete
+                </mat-icon>
+                <div class="container">
+                    <div class="one">
+                        {{ cartItem.quantity }}x {{ cartItem.title }}
+                    </div>
+                    <div class="two">
+                        ${{ cartItem.price }}
+                    </div>
+
+                </div>
+
+                <!-- <div *ngIf="editMode==true">
+                    <mat-icon (click)="deleteItem(cartItem.cart_item_id)" class="trash">
+                        delete
+                    </mat-icon>
                 </div>
                 <div>
-                    {{ cartItem.quantity }}x {{ cartItem.title }} ${{ cartItem.price }}
-                </div>
+                    {{ cartItem.quantity }}x {{ cartItem.title }} <span class="left">${{ cartItem.price }} </span>
+                </div> -->
             </mat-list-item>
         </div>
         <div>
-            <button mat-button (click)="editMode=!editMode">Edit</button>
+            <button mat-button *ngIf="cartContentList?.length!=0" (click)="editMode=!editMode">Edit</button>
         </div>
+
+        <mat-divider></mat-divider>
     </mat-list>
 
-    <mat-divider></mat-divider>
     <br>
     <mat-card-title>
         Subtotal
     </mat-card-title>
     <mat-list>
         <mat-list-item>
-            Subtotal: ${{ subtotal }}
+            <div class="container">
+                <div class="one">
+                    Subtotal:
+                </div>
+                <div class="two">
+                    ${{ subtotal || 0}}
+                </div>
+            </div>
         </mat-list-item>
         <mat-list-item>
-            Tax: ${{ subtotal * .055 }}
+            <div class="container">
+                <div class="one">
+                    Tax:
+                </div>
+                <div class="two">
+                    ${{ subtotalTax || 0}}
+                </div>
+            </div>
+            <mat-divider></mat-divider>
         </mat-list-item>
     </mat-list>
 
-    <mat-divider></mat-divider>
     <br>
     <mat-card-title>
         Total
     </mat-card-title>
     <mat-list>
         <mat-list-item>
-            Total: ${{ subtotal * 1.055 }}
+            <div class="container">
+                <div class="one">
+                    Total:
+                </div>
+                <div class="two">
+                    ${{ total || 0}}
+                </div>
+            </div>
         </mat-list-item>
         <mat-list-item>
             <p (click)="promoCode=true;"> Have a promo code?</p>
             <br>
             <div *ngIf="promoCode">
-                <mat-form-field class="example-full-width">
-                    <input matInput appearance="outline" placeholder="Enter your promo code">
+                <mat-form-field appearance="outline">
+                    <mat-label>Enter Your Promo Code Here</mat-label>
+                    <input type="text" matInput>
                 </mat-form-field>
             </div>
         </mat-list-item>

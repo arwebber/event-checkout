@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { CartContentsModel } from 'src/app/models/cart-contents.model';
+import { EventService } from 'src/app/pages/event-list/services/event.service';
 import { CheckoutCartService } from './services/checkout-cart.service';
 
 @Component({
@@ -11,6 +12,7 @@ import { CheckoutCartService } from './services/checkout-cart.service';
 export class CheckoutCartComponent implements OnInit, OnChanges {
 
   constructor(
+    private eventService: EventService,
     private checkoutService: CheckoutCartService,
     private cookieService: CookieService
   ) {
@@ -38,9 +40,24 @@ export class CheckoutCartComponent implements OnInit, OnChanges {
   editMode = false;
 
   /**
-   * Boolean to determine if edit has been selected.
+   * The cart subtotal.
    */
   subtotal: number;
+
+  /**
+   * The cart subtotal including tax.
+   */
+  subtotalTax: number;
+
+  /**
+   * The cart total.
+   */
+  total: number;
+
+  /**
+   * Sales tax in Wisconsin is 5.6%
+   */
+  tax = 0.056;
 
   ngOnInit(): void {
     if (this.sessionId != null) {
@@ -63,7 +80,9 @@ export class CheckoutCartComponent implements OnInit, OnChanges {
 
   cartSubTotal() {
     this.checkoutService.getCartSubtotal(this.sessionId).then((subtotal) => {
-      this.subtotal = subtotal.subtotal;
+      this.subtotal = +(subtotal.subtotal.toFixed(2));
+      this.subtotalTax = +(this.subtotal * this.tax).toFixed(2);
+      this.total = +(this.subtotal + this.subtotalTax).toFixed(2);
     })
   }
 
@@ -71,5 +90,13 @@ export class CheckoutCartComponent implements OnInit, OnChanges {
     // setTimeout(() => {
     this.cartSubTotal();
     // }, 200);
+  }
+
+  getEventName(eventId): string {
+    this.eventService.getEvent(eventId).then((event) => {
+      return event.title;
+    })
+
+    return 'error loading event title';
   }
 }
