@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { CartContentsModel } from 'src/app/models/cart-contents.model';
 import { CheckoutFormInfo } from 'src/app/models/checkout-form-info.model';
+import { SubTotalModel } from 'src/app/models/subtotal.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,20 +20,34 @@ export class CheckoutCartService {
     return new Promise<CartContentsModel[]>((resolve, reject) => {
       this.http
         .get('/api/cart/v1/contents/by/session/', { params: { sessionId } })
-        .subscribe((cart: CartContentsModel[]) => {
-          resolve(cart);
-        });
+        .subscribe(
+          (cart: CartContentsModel[]) => {
+            resolve(cart);
+          },
+          (error) => {
+            console.error(error)
+            reject('error')
+          });
     });
   }
 
 
   getCartSubtotal(sessionId: string) {
-    return new Promise<any>((resolve, reject) => {
+    return new Promise<number>((resolve, reject) => {
       this.http
         .get('/api/cart/v1/contents/total/', { params: { sessionId } })
-        .subscribe((subtotal) => {
-          resolve(subtotal);
-        });
+        .subscribe(
+          (subtotal: SubTotalModel) => {
+            if (subtotal.subtotal == null) {
+              resolve(0);
+            } else {
+              resolve(subtotal.subtotal);
+            }
+          },
+          (error) => {
+            console.error(error)
+            reject('error')
+          });
     });
   }
 
@@ -43,19 +58,29 @@ export class CheckoutCartService {
     return new Promise<any>((resolve, reject) => {
       this.http
         .delete('/api/cart/v1/delete/cart/item/', { body: { cart_item_id: cartItemId } })
-        .subscribe((cart) => {
-          resolve(cart);
-        });
+        .subscribe(
+          (cart) => {
+            resolve(cart);
+          },
+          (error) => {
+            console.error(error)
+            reject('error')
+          });
     });
   }
 
   addTicketsSold(tickets: CheckoutFormInfo[]) {
-    return new Promise<any>((resolve, reject) => {
+    return new Promise<string>((resolve, reject) => {
       this.http
-        .post('/api/sold/v1/add/tickets/sold', { tickets: tickets })
-        .subscribe(() => {
-          resolve('Success');
-        });
+        .post('/api/sold/v1/add/tickets/sold', { tickets: tickets }).subscribe(
+          () => {
+            resolve('success');
+          },
+          (error) => {
+            console.error(error)
+            reject('error')
+          }
+        );
     });
   }
 }

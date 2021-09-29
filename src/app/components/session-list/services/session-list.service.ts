@@ -18,9 +18,14 @@ export class SessionListService {
     return new Promise<EventSessionModel[]>((resolve, reject) => {
       this.http
         .post('/api/cart/v1/add/cart/item', item)
-        .subscribe((event: EventSessionModel[]) => {
-          resolve(event);
-        });
+        .subscribe(
+          (event: EventSessionModel[]) => {
+            resolve(event);
+          },
+          (error) => {
+            console.error(error)
+            reject('error')
+          });
     });
   }
 
@@ -33,9 +38,14 @@ export class SessionListService {
     return new Promise<number>((resolve, reject) => {
       this.http
         .get('/api/cart/v1/', { params: { sessionId } })
-        .subscribe((cart: number) => {
-          resolve(cart);
-        });
+        .subscribe(
+          (cart: number) => {
+            resolve(cart);
+          },
+          (error) => {
+            console.error(error)
+            reject('error')
+          });
     });
   }
 
@@ -43,9 +53,14 @@ export class SessionListService {
     return new Promise<number>((resolve, reject) => {
       this.http
         .post('/api/cart/v1/add/cart', { session_id: sessionId })
-        .subscribe((cartId: number) => {
-          resolve(cartId);
-        });
+        .subscribe(
+          (cartId: number) => {
+            resolve(cartId);
+          },
+          (error) => {
+            console.error(error)
+            reject('error')
+          });
     });
   }
 }

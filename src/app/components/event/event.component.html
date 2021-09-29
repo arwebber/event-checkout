@@ -5,5 +5,22 @@
 
   <mat-card-subtitle>{{ eventDetails.status }}</mat-card-subtitle>
 
-  <mat-card-content>{{ eventDetails.description }}</mat-card-content>
+  <mat-card-content>
+    {{ eventDetails.description }}
+    <br>
+    <br>
+    <div fxLayout="row" fxLayoutGap="4%">
+      <mat-form-field fxFlex="48%" appearance="outline">
+        <mat-label>Start Date</mat-label>
+        <input matInput value="{{eventDetails.start_date_time | date}}">
+      </mat-form-field>
+
+      <mat-form-field fxFlex="48%" appearance="outline">
+        <mat-label>End Date</mat-label>
+        <input matInput value="{{eventDetails.end_date_time | date}}">
+      </mat-form-field>
+    </div>
+
+
+  </mat-card-content>
 </mat-card>

@@ -3,7 +3,7 @@
         Order Summary
     </mat-card-title>
 
-    <mat-list>
+    <mat-list *ngIf="cartContentList">
         <div *ngFor="let cartItem of cartContentList">
             <mat-list-item>
                 <mat-icon *ngIf="editMode==true" (click)="deleteItem(cartItem.cart_item_id)" class="trash">

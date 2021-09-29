@@ -16,9 +16,34 @@ export class EventDetailsService {
     return new Promise<EventSessionModel[]>((resolve, reject) => {
       this.http
         .get('/api/event-sessions/v1/', { params: { eventId } })
-        .subscribe((event: EventSessionModel[]) => {
-          resolve(event);
-        });
+        .subscribe(
+          (event: EventSessionModel[]) => {
+            resolve(event);
+          },
+          (error) => {
+            console.error(error)
+            reject('error')
+          });
+    });
+  }
+
+  /**
+   * Return the sessions for an event.
+   * @return event
+   */
+  getEventTicketsSold(eventSessionId: number) {
+    console.log('sending the session id', eventSessionId);
+    return new Promise<any>((resolve, reject) => {
+      this.http
+        .get('/api/sold/v1/tickets/event/session/', { params: { eventSessionId } })
+        .subscribe(
+          (ticketsSold) => {
+            resolve(ticketsSold[0].totalSold);
+          },
+          (error) => {
+            console.error(error)
+            reject('error')
+          });
     });
   }
 }
