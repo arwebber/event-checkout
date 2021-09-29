@@ -13,7 +13,7 @@ export class EventService {
    * Return the details of a single event.
    * @return event
    */
-  getEvent(eventId) {
+  getEvent(eventId: string) {
     return new Promise<EventModel>((resolve, reject) => {
       this.http
         .get('/api/events/v1/view/', { params: { eventId } })

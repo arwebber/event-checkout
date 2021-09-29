@@ -1,11 +1,12 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { CartContentsModel } from 'src/app/models/cart-contents.model';
+import { CheckoutFormInfo } from 'src/app/models/checkout-form-info.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CheckoutService {
+export class CheckoutCartService {
 
   constructor(private http: HttpClient) { }
 
@@ -15,7 +16,6 @@ export class CheckoutService {
    * @return cart
    */
   getCartBySession(sessionId: string) {
-    console.log('time to get cart by session', sessionId);
     return new Promise<CartContentsModel[]>((resolve, reject) => {
       this.http
         .get('/api/cart/v1/contents/by/session/', { params: { sessionId } })
@@ -45,6 +45,16 @@ export class CheckoutService {
         .delete('/api/cart/v1/delete/cart/item/', { body: { cart_item_id: cartItemId } })
         .subscribe((cart) => {
           resolve(cart);
+        });
+    });
+  }
+
+  addTicketsSold(tickets: CheckoutFormInfo[]) {
+    return new Promise<any>((resolve, reject) => {
+      this.http
+        .post('/api/sold/v1/add/tickets/sold', { tickets: tickets })
+        .subscribe(() => {
+          resolve('Success');
         });
     });
   }

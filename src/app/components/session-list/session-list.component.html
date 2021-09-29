@@ -1,6 +1,6 @@
 <mat-card>
     <mat-list>
-        <div *ngFor="let session of eventSessions">
+        <div *ngFor="let session of eventSessions; let i = index">
             <mat-list-item>
                 <h2>
                     {{ session.title }}
@@ -18,13 +18,35 @@
                 </p>
             </mat-list-item>
 
-            <mat-list-item>
+            <mat-list-item *ngIf="session.type =='D'">
+                <div fxLayout="row" fxLayoutGap="10px">
+                    <mat-chip-list>
+                        <mat-chip>$50</mat-chip>
+                        <mat-chip>$100</mat-chip>
+                        <mat-chip>$250</mat-chip>
+                        <mat-chip>$500</mat-chip>
+                    </mat-chip-list>
+
+                    <div class="donation-amount">
+                        <mat-form-field class="donation-amount" appearance="outline">
+                            <input matInput placeholder="Amount">
+                            <mat-icon matPrefix class="my-icon">attach_money</mat-icon>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+
+
+                <mat-divider *ngIf="i<(eventSessions.length-1)"></mat-divider>
+            </mat-list-item>
+
+            <mat-list-item *ngIf="session.type !='D'">
                 <div fxLayout="row" fxLayoutGap="10px">
                     <div>
                         ${{ session.price }}
                     </div>
 
-                    <div class="test">
+                    <div class="selector">
                         <mat-select (selectionChange)="addToCart(session.event_session_id, $event.value)"
                             id="session_quantity_{{session.event_session_id}}">
                             <mat-option *ngFor="let n of numSequence(11);let i = index;" [value]="i"> {{ i }}
@@ -32,10 +54,9 @@
                         </mat-select>
                     </div>
                 </div>
-
-
+                <mat-divider *ngIf="i<(eventSessions.length-1)"></mat-divider>
             </mat-list-item>
-            <mat-divider></mat-divider>
+
         </div>
     </mat-list>
 </mat-card>

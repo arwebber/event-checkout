@@ -11,8 +11,19 @@
     border-radius: 15%; */
 }
 
-.test {
+.selector {
     width: 35px;
     border: 1px solid #cbcbcb;
     border-radius: 5px;
+}
+
+.donation {
+    width: 150px;
+    border: 1px solid #cbcbcb;
+    border-radius: 50px;
+}
+
+.donation-amount {
+    font-size: 11px;
+    width: 100px;
 }

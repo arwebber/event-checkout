@@ -14,3 +14,10 @@ mat-toolbar {
   background-color: transparent;
   color: black
 }
+
+.checkout-btn.mat-raised-button {
+  margin-top: 25px;
+  width: 100%;
+  background-color: green;
+  color: white;
+}
