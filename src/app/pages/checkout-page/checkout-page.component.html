@@ -55,38 +55,33 @@
                                     <div fxLayout="row" fxLayoutGap="10px">
                                         <mat-form-field class="input-field" appearance="outline">
                                             <mat-label>First Name</mat-label>
-                                            <input [required]="i==0" type="text" matInput formControlName="firstName"
-                                                [errorStateMatcher]="matcher">
+                                            <input [required]="i==0" type="text" matInput formControlName="firstName">
                                         </mat-form-field>
 
                                         <mat-form-field class="input-field" appearance="outline">
                                             <mat-label>Last Name</mat-label>
-                                            <input [required]="i==0" type="text" matInput formControlName="lastName"
-                                                [errorStateMatcher]="matcher">
+                                            <input [required]="i==0" type="text" matInput formControlName="lastName">
                                         </mat-form-field>
                                     </div>
 
                                     <div fxLayout="row">
                                         <mat-form-field class="input-field" appearance="outline">
                                             <mat-label>Email</mat-label>
-                                            <input [required]="i==0" type="email" matInput formControlName="email"
-                                                [errorStateMatcher]="matcher">
+                                            <input [required]="i==0" type="email" matInput formControlName="email">
                                         </mat-form-field>
                                     </div>
 
                                     <div fxLayout="row">
                                         <mat-form-field class="input-field" appearance="outline">
                                             <mat-label>Phone</mat-label>
-                                            <input [maxLength]="10" type="text" matInput formControlName="phone"
-                                                [errorStateMatcher]="matcher">
+                                            <input [maxLength]="10" type="text" matInput formControlName="phone">
                                         </mat-form-field>
                                     </div>
 
                                     <div fxLayout="row">
                                         <mat-form-field class="input-field" appearance="outline">
                                             <mat-label>Company</mat-label>
-                                            <input type="text" matInput formControlName="company"
-                                                [errorStateMatcher]="matcher">
+                                            <input type="text" matInput formControlName="company">
                                         </mat-form-field>
                                     </div>
                                 </div>
