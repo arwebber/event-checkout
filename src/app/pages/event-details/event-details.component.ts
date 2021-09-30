@@ -51,29 +51,35 @@ export class EventDetailsComponent implements OnInit {
    */
   cartContentList: CartContentsModel[]
 
-  ngOnInit() {
+  ngOnInit(): void {
+    // Load all event sessions into eventSessions array.
     this.eventDetailsService.getEventSessions(this.eventId).then((sessions: EventSessionModel[]) => {
       this.eventSessions = sessions;
 
+      // After sessions are loaded, determine the number of tickets sold for each event session.
       this.loadTicketsSold(this.eventSessions);
-
-      console.log('tickets remaining', this.eventSessions);
-
     });
-    this.loadCart('t');
+    // Reload the users cart. 
+    this.loadCart();
   }
 
-  loadTicketsSold(sessions: EventSessionModel[]) {
-    // Retrieve the tickets sold for each event.
+  /**
+   * Load the tickets sold by each session
+   * @param sessions The event session array
+   */
+  loadTicketsSold(sessions: EventSessionModel[]): void {
+    // Loop through sessions to retrieve the total tickets sold.
     sessions.forEach((event: EventSessionModel) => {
-      console.log('the event', event);
       this.eventDetailsService.getEventTicketsSold(event.event_session_id).then((ticketsSold) => {
         event.tickets_sold = ticketsSold;
       })
     })
   }
 
-  loadCart(event) {
+  /**
+   * Call the cart service and load the contents.
+   */
+  loadCart() {
     if (this.sessionId != null) {
       this.checkoutCartService.getCartBySession(this.sessionId).then((cart) => {
         this.cartContentList = cart;
@@ -81,10 +87,16 @@ export class EventDetailsComponent implements OnInit {
     }
   }
 
+  /**
+   * Navigate back to the event list page.
+   */
   goBack() {
     this.location.back();
   }
 
+  /**
+   * Navigate to the checkout page.
+   */
   checkout() {
     this.router.navigate(['/checkout'])
   }
