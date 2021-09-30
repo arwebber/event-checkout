@@ -111,7 +111,7 @@ export class CheckoutPageComponent implements OnInit, AfterContentChecked {
   /**
    * Build the checkout form.
    */
-  buildForm(checkoutFormData): void {
+  buildForm(checkoutFormData: FormGroup[]): void {
     // Add existing data to partial ticket form.
     this.ticketForm = this.formBuilder.group({
       tickets: this.formBuilder.array(checkoutFormData)
