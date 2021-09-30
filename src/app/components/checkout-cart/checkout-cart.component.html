@@ -5,7 +5,6 @@
 
     <mat-list *ngIf="cartContentList">
         <mat-list-item class="matitem" *ngFor="let cartItem of cartContentList">
-
             <div class="totals-container">
                 <div class="delete-icon-flex">
                     <mat-icon *ngIf="editMode==true" (click)="deleteItem(cartItem.cart_item_id)" class="trash">

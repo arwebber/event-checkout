@@ -12,27 +12,31 @@ export class CheckoutCartService {
   constructor(private http: HttpClient) { }
 
   /**
-   * Return the cart for a given session.
-   * @param sessionId
-   * @return cart
+   * Return the cart for a given user session.
+   * @param sessionId users session ID
+   * @return cartContents
    */
-  getCartBySession(sessionId: string) {
+  getCartBySession(sessionId: string): Promise<CartContentsModel[]> {
     return new Promise<CartContentsModel[]>((resolve, reject) => {
       this.http
         .get('/api/cart/v1/contents/by/session/', { params: { sessionId } })
         .subscribe(
-          (cart: CartContentsModel[]) => {
-            resolve(cart);
+          (cartContents: CartContentsModel[]) => {
+            resolve(cartContents);
           },
           (error) => {
-            console.error(error)
-            reject('error')
+            console.error(error);
+            reject('error');
           });
     });
   }
 
-
-  getCartSubtotal(sessionId: string) {
+  /**
+   * Return the cart subtotal for a given user session.
+   * @param sessionId users session ID
+   * @return the subtotal for a cart.
+   */
+  getCartSubtotal(sessionId: string): Promise<number> {
     return new Promise<number>((resolve, reject) => {
       this.http
         .get('/api/cart/v1/contents/total/', { params: { sessionId } })
@@ -45,31 +49,38 @@ export class CheckoutCartService {
             }
           },
           (error) => {
-            console.error(error)
-            reject('error')
+            console.error(error);
+            reject('error');
           });
     });
   }
 
   /**
    * Delete an item from the cart.
+   * @param cartItemId the cart item ID to delete.
+   * @return deletedCartID the deleted cart ID
    */
-  deleteCartItemById(cartItemId: number) {
-    return new Promise<any>((resolve, reject) => {
+  deleteCartItemById(cartItemId: number): Promise<number> {
+    return new Promise<number>((resolve, reject) => {
       this.http
         .delete('/api/cart/v1/delete/cart/item/', { body: { cart_item_id: cartItemId } })
         .subscribe(
-          (cart) => {
-            resolve(cart);
+          (deletedCartID: number) => {
+            resolve(deletedCartID);
           },
           (error) => {
-            console.error(error)
-            reject('error')
+            console.error(error);
+            reject('error');
           });
     });
   }
 
-  addTicketsSold(tickets: CheckoutFormInfo[]) {
+  /**
+   * Add tickets to the sold database after successful purchase.
+   * @param tickets the tickets the user purchased
+   * @return a success message
+   */
+  addTicketsSold(tickets: CheckoutFormInfo[]): Promise<string> {
     return new Promise<string>((resolve, reject) => {
       this.http
         .post('/api/sold/v1/add/tickets/sold', { tickets: tickets }).subscribe(
@@ -77,8 +88,8 @@ export class CheckoutCartService {
             resolve('success');
           },
           (error) => {
-            console.error(error)
-            reject('error')
+            console.error(error);
+            reject('error');
           }
         );
     });
