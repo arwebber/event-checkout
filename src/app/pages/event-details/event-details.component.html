@@ -9,7 +9,7 @@
 
 <div class="content" fxLayout="row">
   <div fxFlex="75" class="event-details">
-    <app-session-list (change)="loadCart()" [eventSessions]="eventSessions"></app-session-list>
+    <app-event-sessions (change)="loadCart()" [eventSessions]="eventSessions"></app-event-sessions>
   </div>
   <div fxFlex="25" class="checkout">
     <app-checkout-cart [cartContentList]="cartContentList"></app-checkout-cart>

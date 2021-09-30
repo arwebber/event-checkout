@@ -23,8 +23,8 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { CheckoutCartComponent } from './components/checkout-cart/checkout-cart.component';
 import { CheckoutModalComponent } from './components/checkout-modal/checkout-modal.component';
+import { EventSessionsComponent } from './components/event-sessions/event-sessions.component';
 import { EventComponent } from "./components/event/event.component";
-import { SessionListComponent } from './components/session-list/session-list.component';
 import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
 import { EventDetailsComponent } from "./pages/event-details/event-details.component";
 import { EventListComponent } from "./pages/event-list/event-list.component";
@@ -35,7 +35,7 @@ import { EventListComponent } from "./pages/event-list/event-list.component";
     EventListComponent,
     EventDetailsComponent,
     EventComponent,
-    SessionListComponent,
+    EventSessionsComponent,
     CheckoutCartComponent,
     CheckoutPageComponent,
     CheckoutModalComponent
