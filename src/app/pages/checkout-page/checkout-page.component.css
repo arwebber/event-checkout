@@ -59,3 +59,7 @@ button[disabled]{
 ::ng-deep .mat-horizontal-stepper-header{
     pointer-events: none !important;
 }
+
+.skip-step {
+    cursor: pointer;
+}

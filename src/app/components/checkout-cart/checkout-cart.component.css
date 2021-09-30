@@ -45,3 +45,7 @@ p {
 .matitem.mat-list-item {
     height: auto;
 }
+
+.promo {
+    cursor: pointer;
+}
