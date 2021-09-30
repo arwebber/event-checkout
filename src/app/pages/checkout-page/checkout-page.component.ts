@@ -42,12 +42,17 @@ export class CheckoutPageComponent implements OnInit, AfterContentChecked {
   cartContentList: CartContentsModel[];
 
   /**
-   * Group of forms for ticket
+   * Form group for the tickets.
    */
   ticketForm: FormGroup;
 
   /**
-   * CheckoutFormInfo data
+   * Form group for the payment.
+   */
+  paymentForm: FormGroup;
+
+  /**
+   * Cart Checkout Data
    */
   checkoutFormData: FormGroup[] = [];
 
@@ -107,9 +112,13 @@ export class CheckoutPageComponent implements OnInit, AfterContentChecked {
    * Build the checkout form.
    */
   buildForm(checkoutFormData): void {
+    // Add existing data to partial ticket form.
     this.ticketForm = this.formBuilder.group({
       tickets: this.formBuilder.array(checkoutFormData)
     });
+
+    // Create blank payment form.
+    this.paymentForm = this.formBuilder.group({ name: '', cardNumber: '', cvv: '', expDate: '' });
   }
 
   /**
@@ -127,11 +136,23 @@ export class CheckoutPageComponent implements OnInit, AfterContentChecked {
   }
 
   /**
+   * Go to previous step.
+   */
+  goBackStep(stepper: MatStepper): void {
+    if (this.formBypass) {
+      this.stepper.selectedIndex = 0;
+      this.formBypass = false;
+    } else {
+      this.stepper.previous();
+    }
+  }
+
+  /**
    * Go to next step and determine the text to dispaly in the button.
    */
   goForwardStep(stepper: MatStepper): void {
     if (this.nextStep != 'Submit Purchase') {
-      stepper.next();
+      this.stepper.next();
     } else {
       this.completePurchase();
     }
