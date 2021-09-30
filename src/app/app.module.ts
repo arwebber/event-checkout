@@ -26,14 +26,14 @@ import { CheckoutModalComponent } from './components/checkout-modal/checkout-mod
 import { EventSessionsComponent } from './components/event-sessions/event-sessions.component';
 import { EventComponent } from "./components/event/event.component";
 import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
-import { EventDetailsComponent } from "./pages/event-details/event-details.component";
+import { EventSessionsPageComponent } from "./pages/event-sessions-page/event-sessions-page.component";
 import { EventsPageComponent } from "./pages/events-page/events-page.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     EventsPageComponent,
-    EventDetailsComponent,
+    EventSessionsPageComponent,
     EventComponent,
     EventSessionsComponent,
     CheckoutCartComponent,
