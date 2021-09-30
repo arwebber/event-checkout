@@ -27,12 +27,12 @@ import { EventSessionsComponent } from './components/event-sessions/event-sessio
 import { EventComponent } from "./components/event/event.component";
 import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
 import { EventDetailsComponent } from "./pages/event-details/event-details.component";
-import { EventListComponent } from "./pages/event-list/event-list.component";
+import { EventsPageComponent } from "./pages/events-page/events-page.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    EventListComponent,
+    EventsPageComponent,
     EventDetailsComponent,
     EventComponent,
     EventSessionsComponent,

@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
 import { EventDetailsComponent } from "./pages/event-details/event-details.component";
-import { EventListComponent } from "./pages/event-list/event-list.component";
+import { EventsPageComponent } from "./pages/events-page/events-page.component";
 
 const routes: Routes = [
   {
@@ -12,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: "event-list",
-    component: EventListComponent
+    component: EventsPageComponent
   },
   {
     path: "event-details/:eventName/:eventId",

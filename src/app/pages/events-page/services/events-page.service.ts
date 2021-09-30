@@ -5,7 +5,7 @@ import { EventModel } from "src/app/models/event.model";
 @Injectable({
   providedIn: "root"
 })
-export class EventService {
+export class EventsPageService {
 
   constructor(private http: HttpClient) { }
 
