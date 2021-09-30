@@ -1,9 +1,8 @@
 import { Location } from '@angular/common';
 import { AfterContentChecked, Component, OnInit, ViewChild } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatStepper } from '@angular/material/stepper';
-import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { CheckoutCartService } from 'src/app/components/checkout-cart/services/checkout-cart.service';
 import { CheckoutModalComponent } from 'src/app/components/checkout-modal/checkout-modal.component';
@@ -19,7 +18,6 @@ export class CheckoutPageComponent implements OnInit, AfterContentChecked {
 
   constructor(
     private dialog: MatDialog,
-    private router: Router,
     private location: Location,
     private checkoutCartService: CheckoutCartService,
     private cookieService: CookieService,
@@ -49,69 +47,89 @@ export class CheckoutPageComponent implements OnInit, AfterContentChecked {
   ticketForm: FormGroup;
 
   /**
-   * Group of forms for ticket
-   */
-  ticketArray: FormArray;
-
-  /**
    * CheckoutFormInfo data
    */
   checkoutFormData: FormGroup[] = [];
 
-  collapsed = false;
-
   /**
    * Used to fill the text for the button.
    */
-  nextStep: string
+  nextStep: string;
 
+  /**
+   * Determine if user skips to payment to enable the submit button.
+   */
+  formBypass = false;
+
+  /**
+   * Initialize the component by loading the cart contents and pushing into list.
+   */
   ngOnInit(): void {
     if (this.sessionId != null) {
+      // Get the cart contents
       this.checkoutCartService.getCartBySession(this.sessionId).then((cart) => {
+        // Assign content to the list
         this.cartContentList = cart;
+        // Loop through contents to add to checkout form
         this.cartContentList.forEach((cartItem) => {
           const cartInfoItem = new CheckoutFormInfo(cartItem);
           for (let i = 0; i < cartInfoItem.cartItem.quantity; i++) {
             this.checkoutFormData.push(this.formBuilder.group(cartInfoItem));
           }
-        })
+        });
+        // Build the checkout form.
         this.buildForm(this.checkoutFormData);
       });
     }
   }
 
-  ngAfterContentChecked() {
+  /**
+   * Update the step label on the button after being pressed.
+   */
+  ngAfterContentChecked(): void {
     this.nextStep = this.getStepLabel();
   }
 
+  /**
+   * Return the step label on the button.
+   */
   getStepLabel(): string {
     try {
       const stepLabel = 'View ' + this.stepper.steps.get(this.stepper.selectedIndex + 1).label;
       return stepLabel;
     } catch (e) {
+      // If we are out of index, display submit purchase.
       return 'Submit Purchase';
     }
   }
 
-  buildForm(checkoutFormData) {
+  /**
+   * Build the checkout form.
+   */
+  buildForm(checkoutFormData): void {
     this.ticketForm = this.formBuilder.group({
       tickets: this.formBuilder.array(checkoutFormData)
     });
   }
 
-  showContent(process) {
+  /**
+   * Expand the card to display details.
+   */
+  showContent(process): void {
     process.value.visible = true;
   }
 
-  hideContent(process) {
+  /**
+   * Shrink the card to only display title.
+   */
+  hideContent(process): void {
     process.value.visible = false;
   }
 
-  goBackStep(stepper: MatStepper) {
-    stepper.previous();
-  }
-
-  goForwardStep(stepper: MatStepper) {
+  /**
+   * Go to next step and determine the text to dispaly in the button.
+   */
+  goForwardStep(stepper: MatStepper): void {
     if (this.nextStep != 'Submit Purchase') {
       stepper.next();
     } else {
@@ -119,20 +137,27 @@ export class CheckoutPageComponent implements OnInit, AfterContentChecked {
     }
   }
 
-  goToLastStep() {
+  /**
+   * Bypass to last step and set bypass to true.
+   */
+  goToLastStep(): void {
     this.stepper.selectedIndex = 2;
+    this.formBypass = true;
   }
 
-  completePurchase() {
-    console.log('tix', this.ticketForm.value.tickets);
+  /**
+   * Complete the purchase and display a dialog box.
+   */
+  completePurchase(): void {
     this.checkoutCartService.addTicketsSold(this.ticketForm.value.tickets).then(() => {
+      // Open success dialog box
       this.dialog.open(CheckoutModalComponent, {
         height: '400px',
         width: '600px',
         data: { type: 'success' }
       });
     }).catch(() => {
-      console.log('error>>>????')
+      // Open error dialog box
       this.dialog.open(CheckoutModalComponent, {
         height: '400px',
         width: '600px',
@@ -141,7 +166,10 @@ export class CheckoutPageComponent implements OnInit, AfterContentChecked {
     });
   }
 
-  goBack() {
+  /**
+   * Go back to viewing event details
+   */
+  goBack(): void {
     this.location.back();
   }
 }
