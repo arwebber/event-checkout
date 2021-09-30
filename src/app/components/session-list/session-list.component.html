@@ -12,11 +12,13 @@
                     {{ session.description }}
                 </p>
             </mat-list-item>
+
             <mat-list-item *ngIf="session.type != 'D' && session.total_quantity - session.tickets_sold <= 10">
                 <p>
                     Hurry! Only {{ session.total_quantity - session.tickets_sold }} remaining!
                 </p>
             </mat-list-item>
+
             <mat-list-item *ngIf="session.sale">
                 <p>
                     Sale ends in {{ daysFromTodayCalculator(session.sale_end_date_time) }}
@@ -39,9 +41,6 @@
                         </mat-form-field>
                     </div>
                 </div>
-
-
-
                 <mat-divider *ngIf="i<(eventSessions.length-1)"></mat-divider>
             </mat-list-item>
 
@@ -67,9 +66,6 @@
                                     {{ i }}
                                 </mat-option>
                             </div>
-
-
-
                         </mat-select>
                     </div>
                 </div>
@@ -82,7 +78,6 @@
                 </div>
                 <mat-divider *ngIf="i<(eventSessions.length-1)"></mat-divider>
             </mat-list-item>
-
         </div>
     </mat-list>
 </mat-card>
