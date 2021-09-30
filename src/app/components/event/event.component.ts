@@ -15,12 +15,12 @@ export class EventComponent implements OnInit {
    */
   @Input() eventDetails: EventModel;
 
-  ngOnInit() { }
+  ngOnInit(): void { }
 
   /**
    * View the details of an event.
    */
-  viewEventDetails() {
+  viewEventDetails(): void {
     this.router.navigate([`/event-details/${this.eventDetails.title}/${this.eventDetails.event_id}`]);
   }
 }
