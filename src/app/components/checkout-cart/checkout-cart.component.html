@@ -4,69 +4,67 @@
     </mat-card-title>
 
     <mat-list *ngIf="cartContentList">
-        <!-- <div *ngFor="let cartItem of cartContentList"> -->
-        <!-- <mat-list-item>
-                {{ cartItem.event_title }}
-            </mat-list-item> -->
-
         <mat-list-item class="matitem" *ngFor="let cartItem of cartContentList">
-            <mat-icon *ngIf="editMode==true" (click)="deleteItem(cartItem.cart_item_id)" class="trash">
-                delete
-            </mat-icon>
 
-            <div class="container">
-                <div class="one">
+            <div class="totals-container">
+                <div class="delete-icon-flex">
+                    <mat-icon *ngIf="editMode==true" (click)="deleteItem(cartItem.cart_item_id)" class="trash">
+                        delete
+                    </mat-icon>
+                </div>
+                <div class="left-cart">
                     <mat-card-content>
                         {{ cartItem.quantity }}x {{ cartItem.event_title }}: {{ cartItem.title }}
                     </mat-card-content>
                 </div>
-                <div class="two">
+                <div class="right-cart">
                     <mat-card-content>
                         ${{ cartItem.price }}
                     </mat-card-content>
                 </div>
                 <br>
             </div>
-
-            <!-- <div *ngIf="editMode==true">
-                    <mat-icon (click)="deleteItem(cartItem.cart_item_id)" class="trash">
-                        delete
-                    </mat-icon>
-                </div>
-                <div>
-                    {{ cartItem.quantity }}x {{ cartItem.title }} <span class="left">${{ cartItem.price }} </span>
-                </div> -->
         </mat-list-item>
-        <!-- </div> -->
-        <div>
-            <button mat-button *ngIf="cartContentList?.length!=0" (click)="editMode=!editMode">Edit</button>
-        </div>
-
-        <mat-divider></mat-divider>
+        <mat-list-item>
+            <div>
+                <button mat-button *ngIf="cartContentList?.length!=0" (click)="editMode=!editMode">Edit</button>
+            </div>
+            <mat-divider></mat-divider>
+        </mat-list-item>
     </mat-list>
 
     <br>
+
     <mat-card-title>
         Subtotal
     </mat-card-title>
+
     <mat-list>
         <mat-list-item>
-            <div class="container">
-                <div class="one">
-                    Subtotal:
+            <div class="totals-container">
+                <div class="left-cart">
+                    <mat-card-content>
+                        Subtotal:
+                    </mat-card-content>
                 </div>
-                <div class="two">
-                    ${{ subtotal || 0}}
+                <div class="right-cart">
+                    <mat-card-content>
+                        ${{ subtotal || 0}}
+                    </mat-card-content>
                 </div>
             </div>
         </mat-list-item>
         <mat-list-item>
-            <div class="container">
-                <div class="one">
-                    Tax:
+            <div class="totals-container">
+                <div class="left-cart">
+                    <mat-card-content>
+                        Tax:
+                    </mat-card-content>
                 </div>
-                <div class="two">
-                    ${{ subtotalTax || 0}}
+                <div class="right-cart">
+                    <mat-card-content>
+                        ${{ subtotalTax || 0}}
+                    </mat-card-content>
                 </div>
             </div>
             <mat-divider></mat-divider>
@@ -74,34 +72,37 @@
     </mat-list>
 
     <br>
+
     <mat-card-title>
         Total
     </mat-card-title>
+
     <mat-list>
         <mat-list-item>
-            <div class="container">
-                <div class="one">
-                    Total:
+            <div class="totals-container">
+                <div class="left-cart">
+                    <mat-card-content>
+                        Total:
+                    </mat-card-content>
                 </div>
-                <div class="two">
-                    ${{ total || 0}}
+                <div class="right-cart">
+                    <mat-card-content>
+                        ${{ total || 0}}
+                    </mat-card-content>
                 </div>
             </div>
         </mat-list-item>
         <mat-list-item>
-
             <div>
                 <p (click)="promoCode=!promoCode;"> Have a promo code?</p>
                 <br>
             </div>
         </mat-list-item>
         <div *ngIf="promoCode">
-
             <mat-form-field appearance="outline">
                 <mat-label>Enter Promo Code</mat-label>
                 <input type="text" matInput>
             </mat-form-field>
-
         </div>
     </mat-list>
 </mat-card>
