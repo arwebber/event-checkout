@@ -32,17 +32,22 @@
                     <form *ngIf="ticketForm" [formGroup]="ticketForm">
                         <mat-card class="ticket-essions" formArrayName="tickets"
                             *ngFor="let ticket of ticketForm.get('tickets')['controls']; let i = index;s">
-                            <span (click)="showContent(ticket)">
-                                <mat-icon role="img" *ngIf="!ticket.value.visible">
-                                    keyboard_arrow_up</mat-icon>
-                            </span>
-                            <span (click)="hideContent(ticket)">
-                                <mat-icon role="img" *ngIf="ticket.value.visible">
-                                    keyboard_arrow_down</mat-icon>
-                            </span>
-
                             <mat-card-title>
-                                Attendee {{ i + 1 }} - {{ ticket.value.cartItem.title }}
+                                <div fxLayout="row">
+                                    <div fxFlex=95>
+                                        Attendee {{ i + 1 }} - {{ ticket.value.cartItem.title }}
+                                    </div>
+                                    <div fxFlex=5>
+                                        <span (click)="showContent(ticket)">
+                                            <mat-icon role="img" *ngIf="!ticket.value.visible">
+                                                keyboard_arrow_up</mat-icon>
+                                        </span>
+                                        <span (click)="hideContent(ticket)">
+                                            <mat-icon role="img" *ngIf="ticket.value.visible">
+                                                keyboard_arrow_down</mat-icon>
+                                        </span>
+                                    </div>
+                                </div>
                             </mat-card-title>
 
                             <mat-card-content *ngIf="!ticket.value.visible">
