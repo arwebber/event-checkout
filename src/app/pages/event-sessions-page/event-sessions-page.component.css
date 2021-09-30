@@ -28,3 +28,7 @@ button[disabled]{
   background-color: #cccccc;
   color: #666666;
 }
+
+.content {
+  padding-bottom: 15%;
+}

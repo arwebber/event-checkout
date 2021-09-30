@@ -5,7 +5,7 @@ import { CartItemModel } from 'src/app/models/cart-item.model';
 @Injectable({
   providedIn: 'root'
 })
-export class SessionListService {
+export class EventSessionsService {
 
   constructor(private http: HttpClient) { }
 

@@ -5,17 +5,17 @@ import { CookieService } from 'ngx-cookie-service';
 import { CheckoutCartService } from 'src/app/components/checkout-cart/services/checkout-cart.service';
 import { CartContentsModel } from 'src/app/models/cart-contents.model';
 import { EventSessionModel } from 'src/app/models/event-sessions.model';
-import { EventDetailsService } from "./service/event-details.service";
+import { EventSessionsPageService } from "./service/event-sessions-page.service";
 
 @Component({
-  selector: "app-event-details",
-  templateUrl: "./event-details.component.html",
-  styleUrls: ["./event-details.component.css"]
+  selector: "app-event-sessions-page",
+  templateUrl: "./event-sessions-page.component.html",
+  styleUrls: ["./event-sessions-page.component.css"]
 })
-export class EventDetailsComponent implements OnInit {
+export class EventSessionsPageComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
-    private eventDetailsService: EventDetailsService,
+    private eventSessionsPageService: EventSessionsPageService,
     private location: Location,
     private router: Router,
     private checkoutCartService: CheckoutCartService,
@@ -53,7 +53,7 @@ export class EventDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     // Load all event sessions into eventSessions array.
-    this.eventDetailsService.getEventSessions(this.eventId).then((sessions: EventSessionModel[]) => {
+    this.eventSessionsPageService.getEventSessions(this.eventId).then((sessions: EventSessionModel[]) => {
       this.eventSessions = sessions;
 
       // After sessions are loaded, determine the number of tickets sold for each event session.
@@ -70,7 +70,7 @@ export class EventDetailsComponent implements OnInit {
   loadTicketsSold(sessions: EventSessionModel[]): void {
     // Loop through sessions to retrieve the total tickets sold.
     sessions.forEach((event: EventSessionModel) => {
-      this.eventDetailsService.getEventTicketsSold(event.event_session_id).then((ticketsSold) => {
+      this.eventSessionsPageService.getEventTicketsSold(event.event_session_id).then((ticketsSold) => {
         event.tickets_sold = ticketsSold;
       })
     })

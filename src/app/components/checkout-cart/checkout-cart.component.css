@@ -42,6 +42,15 @@ p {
     text-align: right;
 }
 
+.left-totals {
+    flex-basis: 60%;
+}
+
+.right-totals {
+    flex-basis: 40%;
+    text-align: right;
+}
+
 .matitem.mat-list-item {
     height: auto;
 }

@@ -13,13 +13,14 @@
                 </p>
             </mat-list-item>
 
-            <mat-list-item *ngIf="session.type != 'D' && session.total_quantity - session.tickets_sold <= 10">
+            <mat-list-item
+                *ngIf="session.type != 'D' && session.total_quantity - session.tickets_sold <= 10 && session.total_quantity != session.tickets_sold">
                 <p>
                     Hurry! Only {{ session.total_quantity - session.tickets_sold }} remaining!
                 </p>
             </mat-list-item>
 
-            <mat-list-item *ngIf="session.sale">
+            <mat-list-item *ngIf="session.sale && session.total_quantity != session.tickets_sold">
                 <p>
                     Sale ends in {{ daysFromTodayCalculator(session.sale_end_date_time) }}
                 </p>

@@ -15,6 +15,12 @@ export class EventComponent implements OnInit {
    */
   @Input() eventDetails: EventModel;
 
+  /**
+   * Boolean to track if card content should be displayed. 
+   * Begin by showing collapsed card
+   */
+  cardVisible = false;
+
   ngOnInit(): void { }
 
   /**

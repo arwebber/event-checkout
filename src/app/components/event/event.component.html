@@ -1,11 +1,24 @@
-<mat-card class="event-card" (click)="viewEventDetails()">
-  <img mat-card-image [src]="eventDetails.banner_image" />
+<mat-card class="event-card">
+  <img (click)="viewEventDetails()" mat-card-image [src]="eventDetails.banner_image" />
 
-  <mat-card-title>{{ eventDetails.title }}</mat-card-title>
+  <mat-card-title>
+
+    <div fxLayout="row">
+      <div fxFlex="90" (click)="viewEventDetails()">
+        {{ eventDetails.title }}
+      </div>
+      <span fxFlex="10" (click)="cardVisible=!cardVisible">
+        <mat-icon role="img" *ngIf="!cardVisible">
+          keyboard_arrow_up</mat-icon>
+        <mat-icon role="img" *ngIf="cardVisible">
+          keyboard_arrow_down</mat-icon>
+      </span>
+    </div>
+  </mat-card-title>
 
   <mat-card-subtitle>{{ eventDetails.status }}</mat-card-subtitle>
 
-  <mat-card-content>
+  <mat-card-content *ngIf="cardVisible">
     {{ eventDetails.description }}
     <br>
     <br>

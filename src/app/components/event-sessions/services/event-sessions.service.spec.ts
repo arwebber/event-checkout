@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
+import { EventSessionsService } from './event-sessions.service';
 
-import { SessionListService } from './session-list.service';
 
-describe('SessionListService', () => {
-  let service: SessionListService;
+describe('EventSessionsService', () => {
+  let service: EventSessionsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SessionListService);
+    service = TestBed.inject(EventSessionsService);
   });
 
   it('should be created', () => {

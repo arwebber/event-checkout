@@ -2,18 +2,18 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { CartItemModel } from 'src/app/models/cart-item.model';
 import { EventSessionModel } from 'src/app/models/event-sessions.model';
-import { SessionListService } from './services/session-list.service';
+import { EventSessionsService } from './services/event-sessions.service';
 
 @Component({
-  selector: 'app-session-list',
-  templateUrl: './session-list.component.html',
-  styleUrls: ['./session-list.component.css']
+  selector: 'app-event-sessions',
+  templateUrl: './event-sessions.component.html',
+  styleUrls: ['./event-sessions.component.css']
 })
-export class SessionListComponent implements OnInit {
+export class EventSessionsComponent implements OnInit {
 
   constructor(
     private cookieService: CookieService,
-    private sessionListService: SessionListService
+    private sessionListService: EventSessionsService
   ) {
     this.sessionId = this.cookieService.get('session_id');
   }
