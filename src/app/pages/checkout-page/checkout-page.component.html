@@ -10,7 +10,6 @@
 <div fxLayout="row">
     <div fxFlex="75" class="event-details">
         <mat-horizontal-stepper #stepper>
-
             <mat-step label="Tickets">
                 <div>
                     <mat-card>
@@ -21,11 +20,11 @@
                             </mat-card-title>
                         </div>
 
-                        <div class="container">
-                            <div class="one">
+                        <div class="checkout-container">
+                            <div class="left-side">
                                 In a hurry? Fill out this form later via link in your email.
                             </div>
-                            <div (click)="goToLastStep()" class="two">
+                            <div (click)="goToLastStep()" class="right-side skip-step">
                                 Skip this step
                             </div>
                         </div>
@@ -48,29 +47,18 @@
 
                             <mat-card-content *ngIf="!ticket.value.visible">
                                 <div [formGroupName]="i">
-
                                     <div fxLayout="row" fxLayoutGap="10px">
-
                                         <mat-form-field class="input-field" appearance="outline">
                                             <mat-label>First Name</mat-label>
                                             <input [required]="i==0" type="text" matInput formControlName="firstName"
                                                 [errorStateMatcher]="matcher">
-                                            <!-- <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                                                        Please enter a valid email address
-                                                    </mat-error>
-                                                    <mat-error *ngIf="emailFormControl.hasError('required')">
-                                                        Email is <strong>required</strong>
-                                                    </mat-error> -->
                                         </mat-form-field>
-
-
 
                                         <mat-form-field class="input-field" appearance="outline">
                                             <mat-label>Last Name</mat-label>
                                             <input [required]="i==0" type="text" matInput formControlName="lastName"
                                                 [errorStateMatcher]="matcher">
                                         </mat-form-field>
-
                                     </div>
 
                                     <div fxLayout="row">
@@ -84,7 +72,7 @@
                                     <div fxLayout="row">
                                         <mat-form-field class="input-field" appearance="outline">
                                             <mat-label>Phone</mat-label>
-                                            <input type="text" matInput formControlName="phone"
+                                            <input [maxLength]="10" type="text" matInput formControlName="phone"
                                                 [errorStateMatcher]="matcher">
                                         </mat-form-field>
                                     </div>
@@ -97,16 +85,9 @@
                                         </mat-form-field>
                                     </div>
                                 </div>
-                                <span *ngIf="i==0">
-                                    <mat-radio-group>
-                                        <mat-radio-button value="1">Option 1</mat-radio-button>
-                                        <mat-radio-button value="2">Option 2</mat-radio-button>
-                                    </mat-radio-group>
-                                </span>
                             </mat-card-content>
                         </mat-card>
                     </form>
-
                 </div>
             </mat-step>
 
@@ -115,27 +96,23 @@
                     <form *ngIf="ticketForm" [formGroup]="ticketForm">
                         <mat-card class="ticket-essions" formArrayName="tickets"
                             *ngFor="let ticket of ticketForm.get('tickets')['controls']; let i = index;s">
+
                             <mat-card-title>
                                 Attendee {{ i + 1 }} - {{ ticket.value.cartItem.title }}
                             </mat-card-title>
 
                             <mat-card-content *ngIf="!ticket.value.visible">
                                 <div [formGroupName]="i">
-
                                     <div fxLayout="row" fxLayoutGap="10px">
-
                                         <mat-form-field class="input-field" appearance="outline">
                                             <mat-label>First Name</mat-label>
                                             <input disabled matInput [value]="ticket.value.firstName">
                                         </mat-form-field>
 
-
-
                                         <mat-form-field class="input-field" appearance="outline">
                                             <mat-label>Last Name</mat-label>
                                             <input disabled matInput [value]="ticket.value.lastName">
                                         </mat-form-field>
-
                                     </div>
 
                                     <div fxLayout="row">
@@ -166,43 +143,45 @@
             </mat-step>
 
             <mat-step label="Payment">
-                <mat-card>
-                    <div fxLayout="row">
-                        <mat-form-field class="input-field" appearance="outline">
-                            <mat-label>Name on card</mat-label>
-                            <input type="text" matInput>
-                        </mat-form-field>
-                    </div>
-                    <div fxLayout="row">
-                        <mat-form-field class="input-field" appearance="outline">
-                            <mat-label>Card Number</mat-label>
-                            <input type="text" matInput>
-                        </mat-form-field>
-                    </div>
-                    <div fxLayout="row" fxLayoutGap="10px">
+                <form *ngIf="paymentForm" [formGroup]="paymentForm">
+                    <mat-card>
+                        <div fxLayout="row">
+                            <mat-form-field class="input-field" appearance="outline">
+                                <mat-label>Name on card</mat-label>
+                                <input required formControlName="name" type="text" matInput>
+                            </mat-form-field>
+                        </div>
 
-                        <mat-form-field class="input-field" appearance="outline">
-                            <mat-label>Exp Date</mat-label>
-                            <input type="text" matInput>
+                        <div fxLayout="row">
+                            <mat-form-field class="input-field" appearance="outline">
+                                <mat-label>Card Number</mat-label>
+                                <input [maxLength]="16" required formControlName="cardNumber" type="text" matInput>
+                            </mat-form-field>
+                        </div>
 
-                        </mat-form-field>
+                        <div fxLayout="row" fxLayoutGap="10px">
+                            <mat-form-field class="input-field" appearance="outline">
+                                <mat-label>Exp Date (MM/YY)</mat-label>
+                                <input [maxLength]="5" required formControlName="expDate" type="text" matInput>
+                            </mat-form-field>
 
-
-
-                        <mat-form-field class="input-field" appearance="outline">
-                            <mat-label>CVV</mat-label>
-                            <input type="text" matInput>
-                        </mat-form-field>
-
-                    </div>
-                </mat-card>
+                            <mat-form-field class="input-field" appearance="outline">
+                                <mat-label>CVV</mat-label>
+                                <input [maxLength]="3" required formControlName="cvv" type="text" matInput>
+                            </mat-form-field>
+                        </div>
+                    </mat-card>
+                </form>
             </mat-step>
         </mat-horizontal-stepper>
     </div>
     <div fxFlex="25" class="checkout">
         <app-checkout-cart [cartContentList]="cartContentList"></app-checkout-cart>
-        <button
-            [disabled]="this.cartContentList?.length==0 || this.ticketForm?.get('tickets')['controls'][0]?.status=='INVALID'"
+        <button #checkoutButton
+            [disabled]="this.cartContentList?.length==0 || (this.ticketForm?.get('tickets')['controls'][0]?.status=='INVALID' && this.formBypass==false) || (this.paymentForm?.status=='INVALID' && this.getStepLabel()=='Submit Purchase')"
             class="checkout-btn" mat-raised-button (click)="goForwardStep(stepper)"> {{ nextStep }} </button>
+        <button *ngIf="stepper.selectedIndex!=0" #goBackButton class="checkout-btn" mat-raised-button
+            (click)="goBackStep(stepper)"> Go Back
+        </button>
     </div>
 </div>

@@ -11,9 +11,9 @@ export class EventService {
 
   /**
    * Return the details of a single event.
-   * @return event
+   * @return event: EventModel
    */
-  getEvent(eventId: string) {
+  getEvent(eventId: string): Promise<EventModel> {
     return new Promise<EventModel>((resolve, reject) => {
       this.http
         .get('/api/events/v1/view/', { params: { eventId } })
@@ -29,18 +29,18 @@ export class EventService {
   }
 
   /**
-   * Return a list of
-   * @return eventList
+   * Return a list of all events
+   * @return eventList: EventModel[]
    */
-  getAllEvents() {
+  getAllEvents(): Promise<EventModel[]> {
     return new Promise<EventModel[]>((resolve, reject) => {
       this.http.get('/api/events/v1/all').subscribe(
         (hits: EventModel[]) => {
           resolve(hits);
         },
         (error) => {
-          console.error(error)
-          reject('error')
+          console.error(error);
+          reject('error');
         });
     });
   }

@@ -1,5 +1,5 @@
 export class CartContentsModel {
-  cart_item_id: string;
+  cart_item_id: number;
   cart_id: number;
   date_created: string;
   event_session_id: number;
@@ -11,7 +11,7 @@ export class CartContentsModel {
   visible: boolean;
 
   constructor(
-    cart_item_id: string,
+    cart_item_id: number,
     cart_id: number,
     date_created: string,
     event_session_id: number,

@@ -9,11 +9,12 @@
 
 <div fxLayout="row">
   <div fxFlex="75" class="event-details">
-    <app-session-list (change)="loadCart($event)" [eventSessions]="eventSessions"></app-session-list>
+    <app-session-list (change)="loadCart()" [eventSessions]="eventSessions"></app-session-list>
   </div>
   <div fxFlex="25" class="checkout">
     <app-checkout-cart [cartContentList]="cartContentList"></app-checkout-cart>
-    <button [disabled]="cartContentList?.length==0" class="checkout-btn" mat-raised-button (click)="checkout()">Check
-      out</button>
+    <button [disabled]="cartContentList?.length==0" class="checkout-btn" mat-raised-button (click)="checkout()">
+      Check out
+    </button>
   </div>
 </div>

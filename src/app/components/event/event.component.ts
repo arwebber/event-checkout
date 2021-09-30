@@ -10,11 +10,17 @@ import { EventModel } from "src/app/models/event.model";
 export class EventComponent implements OnInit {
   constructor(private router: Router) { }
 
+  /**
+   * Input the event details from the event list page.
+   */
   @Input() eventDetails: EventModel;
 
-  ngOnInit() { }
+  ngOnInit(): void { }
 
-  viewEventDetails() {
+  /**
+   * View the details of an event.
+   */
+  viewEventDetails(): void {
     this.router.navigate([`/event-details/${this.eventDetails.title}/${this.eventDetails.event_id}`]);
   }
 }
