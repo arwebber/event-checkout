@@ -15,11 +15,14 @@ export class CheckoutModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: { type: string }
   ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
+  /**
+   * Dismiss the diaglog modal.
+   */
   dismss(): void {
     this.dialogRef.close();
+    // Navigate to home screen.
     this.router.navigate([`/event-list`]);
   }
 
