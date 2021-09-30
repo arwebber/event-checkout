@@ -63,3 +63,7 @@ button[disabled]{
 .skip-step {
     cursor: pointer;
 }
+
+.content {
+    padding-bottom: 15%;
+}
