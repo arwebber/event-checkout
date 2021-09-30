@@ -31,11 +31,11 @@ p {
 }
 
 .one {
-    flex-basis: 80%;
+    flex-basis: 65%;
 }
 
 .two {
-    flex-basis: 20%;
+    flex-basis: 45%;
     text-align: right;
 }
 

@@ -23,7 +23,7 @@ export class CheckoutPageComponent implements OnInit, AfterContentChecked {
     private cookieService: CookieService,
     private formBuilder: FormBuilder
   ) {
-    this.sessionId = this.cookieService.get('session_id')
+    this.sessionId = this.cookieService.get('session_id');
   }
 
   /**
